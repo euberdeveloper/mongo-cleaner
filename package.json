@@ -1,0 +1,53 @@
+{
+  "name": "mongo-cleaner",
+  "version": "1.0.0",
+  "description": "An npm module to quickly clean your mongodb",
+  "main": "dist/index.js",
+  "scripts": {
+    "transpile": "tsc",
+    "db:populate": "mongorestore test/mock",
+    "lint:fix": "tslint --fix --project tsconfig.json",
+    "lint": "tslint --project tsconfig.json",
+    "test": "mocha --reporter spec",
+    "nyc": "nyc --extension=ts --reporter=html --reporter=text --reporter=lcov npm run test",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euberdeveloper/mongo-cleaner.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongo",
+    "clean",
+    "reset",
+    "database",
+    "mongoclean",
+    "mongo-clean"
+  ],
+  "author": "Eugenio Vinicio Berretta <euberdeveloper@gmail.com>",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/euberdeveloper/mongo-cleaner/issues"
+  },
+  "homepage": "https://github.com/euberdeveloper/mongo-cleaner#readme",
+  "dependencies": {
+    "mongodb": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.3.14",
+    "@types/node": "^13.1.2",
+    "chai": "^4.2.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

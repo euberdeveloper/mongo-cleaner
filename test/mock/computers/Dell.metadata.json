@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"computers.Dell"}],"uuid":"e65925575ba7494fb471333f5234c2ed"}

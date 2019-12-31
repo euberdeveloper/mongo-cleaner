@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"cars.Mercedes"}],"uuid":"2d853b0349104284adbffbc827f6d23c"}
