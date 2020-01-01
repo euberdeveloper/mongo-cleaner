@@ -28,7 +28,6 @@ export async function clean(uri?: string, options?: MongoCleanOptions): Promise<
     // Get databases except for admin
     const databases = (await connection.db().admin().listDatabases())
         .databases.map(database => database.name).filter(database => database !== 'admin');
-    console.log(databases);
     // Delete each database
     for (const database of databases) {
         await connection.db(database).dropDatabase();

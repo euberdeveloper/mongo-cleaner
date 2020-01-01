@@ -1,4 +1,4 @@
-const mongoclean = require('../dist/index');
+const mongoclean = require('../dist/lib/index');
 const mongodb = require('mongodb');
 const expect = require('chai').expect;
 

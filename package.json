@@ -1,8 +1,10 @@
 {
   "name": "mongo-cleaner",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An npm module to quickly clean your mongodb",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "bin": "dist/bin/index.ts",
   "scripts": {
     "transpile": "tsc",
     "db:populate": "mongorestore test/mock",
@@ -32,11 +34,15 @@
   },
   "homepage": "https://github.com/euberdeveloper/mongo-cleaner#readme",
   "dependencies": {
-    "mongodb": "^3.4.1"
+    "inquirer": "^7.0.1",
+    "mongodb": "^3.4.1",
+    "yargs": "^15.0.2"
   },
   "devDependencies": {
+    "@types/inquirer": "^6.5.0",
     "@types/mongodb": "^3.3.14",
     "@types/node": "^13.1.2",
+    "@types/yargs": "^13.0.4",
     "chai": "^4.2.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
