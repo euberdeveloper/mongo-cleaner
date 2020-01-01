@@ -8,7 +8,7 @@ const DEFAULT_CONNECTION_OPTIONS: MongoCleanerConnectionOptions = {
 const DEFAULT_OPTIONS: MongoCleanerOptions = {
     noConfirm: true,
     keep: [],
-    log: true,
+    log: false,
     dropDatabases: true,
     emptyCollections: false,
     emptyDatabases: false,

@@ -20,7 +20,7 @@ export async function clean(uri?: string, connectionOptions?: MongoCleanerConnec
     connectionOptions = mergeConnectionOptions(connectionOptions);
     options = mergeOptions(options);
     
-    if (askConfirm(!options.noConfirm)) {
+    if (await askConfirm(!options.noConfirm)) {
         const cleaner = new Cleaner(uri, connectionOptions, options);
         await cleaner.clean();
     }
