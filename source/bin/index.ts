@@ -14,7 +14,6 @@ yargs
         },
         async argv => {
             const args: any = argv;
-            console.log(args.connectionOptions)
             const uriOptions: UriOptions = {
                 uri: args.uri,
                 host: args.host,
