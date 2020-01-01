@@ -1,39 +1,27 @@
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { MongoCleanerConnectionOptions, MongoCleanerOptions } from './interfaces';
+import { Cleaner } from './utils/cleaner';
+import { askConfirm } from './utils/askConfirm';
+import { mergeUri, mergeConnectionOptions, mergeOptions } from './utils/options';
+
+export * from './interfaces';
+export * from './errors';
 
 /**
- * The options of the mongodb connection. The module uses the npm module mongodb under
- * the hood, so these are the same as the MongoClientOptions.
- */
-export type MongoCleanOptions = MongoClientOptions;
-
-const DEFAULT_URI = 'mongodb://localhost:27017';
-const DEFAULT_OPTIONS = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-};
-
-/**
- * Removes all the databases from mongodb, except for the admin database.
+ * Tries to remove all the database of MongoDB.
  * @param uri The uri of the mongodb connection. Default: mongodb://localhost:27017
- * @param options The options for the connection. This function uses the npm module mongodb under
+ * @param connectionOptions The [[MongoCleanerConnectionOptions]] options for the connection. This function uses the npm module mongodb under
  * the hood, so these are the MongoClientOptions. By default, if not explicitly set to false, 
  * "useUnifiedTopology" and "useNewUrlParser" are set to true.
+ * @param options The [[MongoCleanerOptions]] for the cleaner. You can specify things such as
+ * asking a confirm before cleaning, databases to be kept, keeping collections and removing their documents.
  */
-export async function clean(uri?: string, options?: MongoCleanOptions): Promise<void> {
-    // Parse parameters
-    uri = uri || DEFAULT_URI;
-    options = options ? { ...DEFAULT_OPTIONS, ...options } : DEFAULT_OPTIONS;
-    // Open collection
-    const connection = await MongoClient.connect(uri, options);
-    // Get databases except for admin
-    const databases = (await connection.db().admin().listDatabases())
-        .databases.map(database => database.name).filter(database => database !== 'admin');
-    // Delete each database
-    for (const database of databases) {
-        await connection.db(database).dropDatabase();
+export async function clean(uri?: string, connectionOptions?: MongoCleanerConnectionOptions, options?: MongoCleanerOptions): Promise<void> {
+    uri = mergeUri(uri);
+    connectionOptions = mergeConnectionOptions(connectionOptions);
+    options = mergeOptions(options);
+    
+    if (askConfirm(!options.noConfirm)) {
+        const cleaner = new Cleaner(uri, connectionOptions, options);
+        await cleaner.clean();
     }
-    // Close connection
-    await connection.close();
 }
-
-clean();

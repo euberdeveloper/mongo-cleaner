@@ -36,6 +36,7 @@
   "dependencies": {
     "inquirer": "^7.0.1",
     "mongodb": "^3.4.1",
+    "ora": "^4.0.3",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
