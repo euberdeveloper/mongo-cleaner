@@ -28,7 +28,7 @@ export function mergeOptions(options: MongoCleanerOptions): MongoCleanerOptions 
         merged[key] = options[key] === undefined ? DEFAULT_OPTIONS[key] : options[key];
     }
 
-    if (typeof merged.keep === 'string') {
+    if (!Array.isArray(merged.keep)) {
         merged.keep = [merged.keep];
     }
     if (!(merged.dropDatabases || merged.emptyDatabases || merged.emptyCollections)) {
