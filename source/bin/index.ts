@@ -14,6 +14,7 @@ yargs
         },
         async argv => {
             const args: any = argv;
+            console.log(args.connectionOptions)
             const uriOptions: UriOptions = {
                 uri: args.uri,
                 host: args.host,
@@ -77,6 +78,13 @@ yargs
             describe: 'If the connection uri uses srv. Ignore if also uri is specified',
             type: 'boolean',
             group: 'Connection options:'
+        },
+        'connectionOptions': {
+            default: '{}',
+            describe: 'The connection options object passed to MongoClient. Note: string parsed with JSON.parse',
+            type: 'string',
+            group: 'Connection options:',
+            coerce: value => typeof value === 'object' ? value : JSON.parse(value)
         },
         'noConfirm': {
             alias: 'y',
