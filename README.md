@@ -108,7 +108,7 @@ await mongoCleaner.clean(null, null, options);
 ### Clear everything
 
 ```bash
-$ npm mongo-cleaner clean
+$ mongo-cleaner clean
 ```
 
 This way everything on `mongodb://localhost:27017` will be cleaned
@@ -116,7 +116,7 @@ This way everything on `mongodb://localhost:27017` will be cleaned
 ### Skip confirmation
 
 ```bash
-$ npm mongo-cleaner clean -y
+$ mongo-cleaner clean -y
 ```
 
 This way no proceeding-confirmation will be asked.
@@ -124,7 +124,7 @@ This way no proceeding-confirmation will be asked.
 ### Keep databases
 
 ```bash
-$ npm mongo-cleaner clean --keep first second /test$/i
+$ mongo-cleaner clean --keep first second /test$/i
 ```
 
 This way first, second and all databases that end with "test" (case-insensitive) will be keeped.
@@ -132,7 +132,7 @@ This way first, second and all databases that end with "test" (case-insensitive)
 ### Specify uri
 
 ```bash
-$ npm mongo-cleaner clean --uri mongodb://localhost:8080
+$ mongo-cleaner clean --uri mongodb://localhost:8080
 ```
 
 This way everything on `mongodb://localhost:8080` will be cleaned.
@@ -140,7 +140,7 @@ This way everything on `mongodb://localhost:8080` will be cleaned.
 ### Specify uri with other options
 
 ```bash
-$ npm mongo-cleaner clean --host localhost --port 27017 --username euber --password secret --srv
+$ mongo-cleaner clean --host localhost --port 27017 --username euber --password secret --srv
 ```
 
 This way everything on `srv+mongodb://euber:pass@localhost:27017` will be cleaned.
@@ -148,7 +148,7 @@ This way everything on `srv+mongodb://euber:pass@localhost:27017` will be cleane
 ### Specify options file
 
 ```bash
-$ npm mongo-cleaner clean -o mongo-cleaner.config.json -y
+$ mongo-cleaner clean -o mongo-cleaner.config.json -y
 ```
 
 This way options will be taken by the file `./mongo-cleaner.config.json`. These options do not overwrite
@@ -157,7 +157,7 @@ the command ones, so in every case of this example no confirmation to proceed wi
 ### See all options
 
 ```bash
-$ npm mongo-cleaner --help
+$ mongo-cleaner --help
 ```
 
 ## API
