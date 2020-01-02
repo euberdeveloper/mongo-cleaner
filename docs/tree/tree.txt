@@ -1,0 +1,39 @@
+mongo-cleaner
+ ├─> dist
+ ├─> source
+ │   ├─> bin
+ │   │   ├── index.ts
+ │   │   └─> utils
+ │   │       └── index.ts
+ │   └─> lib
+ │       ├─> errors
+ │       │   ├── index.ts
+ │       │   ├── mongoCleanerCleanError.ts
+ │       │   ├── mongoCleanerConnectionError.ts
+ │       │   ├── mongoCleanerDisconnectionError.ts
+ │       │   ├── mongoCleanerError.ts
+ │       │   ├── mongoCleanerListCollectionsError.ts
+ │       │   └── mongoCleanerListDatabasesError.ts
+ │       ├── index.ts
+ │       ├─> interfaces
+ │       │   └── index.ts
+ │       └─> utils
+ │           ├── askConfirm.ts
+ │           ├── cleaner.ts
+ │           ├── logger.ts
+ │           └── options.ts
+ ├─> test
+ │   ├── clean.test.js
+ │   ├─> mock
+ │   └── test.js
+ ├─> docs
+ │   ├─> html
+ │   └─> tree
+ │       ├── dree.config.json
+ │       └── tree.txt
+ ├── LICENSE
+ ├── .npmignore
+ ├── package-lock.json
+ ├── package.json
+ ├── tsconfig.json
+ └── tslint.json

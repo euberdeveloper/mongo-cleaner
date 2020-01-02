@@ -1,0 +1,12 @@
+{
+    "exclude": [ 
+        "node_modules",
+        ".nyc_output",
+        ".git",
+        "coverage",
+        "dist\\",
+        "docs\\html\\",
+        "docs\\markdown\\",
+        "test\\mock\\"
+    ]
+}

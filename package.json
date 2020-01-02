@@ -12,6 +12,14 @@
     "lint": "tslint --project tsconfig.json",
     "test": "mocha --reporter spec",
     "nyc": "nyc --extension=ts --reporter=html --reporter=text --reporter=lcov npm run test",
+    "cover:coveralls": "nyc report --extension=ts --reporter=text-lcov | coveralls",
+    "cover:codecov": "nyc report --extension=ts --reporter=text-lcov > coverage.lcov && codecov",
+    "cover": "npm run cover:coveralls && npm run cover:codecov",
+    "docs:tree": "dree parse . --dest docs/tree --name tree --options docs/tree/dree.config.json",
+    "docs:html": "typedoc --out docs/html source/lib --plugin none --excludeNotExported --mode file --gaID $GA_TOKEN",
+    "docs:markdown": "typedoc --out docs/markdown source/lib --plugin typedoc-plugin-markdown --theme markdown --excludeNotExported --mode file",
+    "docs:deploy": "now docs/html --name mongo-cleaner --prod --token $NOW_TOKEN",
+    "docs": "npm run docs:html && npm run docs:markdown && npm run docs:deploy",
     "commit": "git-cz"
   },
   "repository": {
@@ -45,11 +53,16 @@
     "@types/node": "^13.1.2",
     "@types/yargs": "^13.0.4",
     "chai": "^4.2.0",
+    "codecov": "^3.6.1",
     "commitizen": "^4.0.3",
+    "coveralls": "^3.0.9",
     "cz-conventional-changelog": "^3.0.2",
+    "dree": "^2.4.6",
     "mocha": "^6.2.2",
     "nyc": "^15.0.0",
     "tslint": "^5.20.1",
+    "typedoc": "^0.15.6",
+    "typedoc-plugin-markdown": "^2.2.14",
     "typescript": "^3.7.4"
   },
   "config": {

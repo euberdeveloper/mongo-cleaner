@@ -11,6 +11,7 @@
         "declaration": true
     },
     "include": [
-        "source"
+        "source/lib/index.ts",
+        "source/bin/index.ts"
     ]
 }
