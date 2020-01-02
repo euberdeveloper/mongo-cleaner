@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/euberdeveloper/mongo-cleaner.svg?branch=master)](https://travis-ci.org/euberdeveloper/mongo-cleaner)
-[![CircleCI](https://circleci.com/gh/euberdeveloper/mongo-cleaner.svg?style=svg)](https://circleci.com/gh/euberdeveloper/mongo-cleaner)
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/mongo-cleaner/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/mongo-cleaner?targetFile=package.json)
 [![dependencies Status](https://david-dm.org/euberdeveloper/mongo-cleaner/status.svg)](https://david-dm.org/euberdeveloper/mongo-cleaner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
