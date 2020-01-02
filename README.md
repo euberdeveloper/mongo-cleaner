@@ -193,6 +193,52 @@ See __Usage__ to have an example.
 * __emptyCollections__: Default value: `false`. If you want to empty collections without dropping them and their databases. If both "emptyDatabases" and this options are true, this option will be used as a fallback if a collection drop fails. NB: If "dropDatabases", "emptyDatabases" and "emptyCollections" are all false, this option will eventually become true.
 * __throwIfNotTotal__: Default value: `false`. If you want to throw a `MongoCleanerCleanError` when MongoDB is only partially cleaned.
 
+## Project structure
+
+Made with **[dree](https://www.npmjs.com/package/dree)**.
+
+```
+mongo-cleaner
+ ├─> dist
+ ├─> source
+ │   ├─> bin
+ │   │   ├── index.ts
+ │   │   └─> utils
+ │   │       └── index.ts
+ │   └─> lib
+ │       ├─> errors
+ │       │   ├── index.ts
+ │       │   ├── mongoCleanerCleanError.ts
+ │       │   ├── mongoCleanerConnectionError.ts
+ │       │   ├── mongoCleanerDisconnectionError.ts
+ │       │   ├── mongoCleanerError.ts
+ │       │   ├── mongoCleanerListCollectionsError.ts
+ │       │   └── mongoCleanerListDatabasesError.ts
+ │       ├── index.ts
+ │       ├─> interfaces
+ │       │   └── index.ts
+ │       └─> utils
+ │           ├── askConfirm.ts
+ │           ├── cleaner.ts
+ │           ├── logger.ts
+ │           └── options.ts
+ ├─> test
+ │   ├── clean.test.js
+ │   ├─> mock
+ │   └── test.js
+ ├─> docs
+ │   ├─> html
+ │   └─> tree
+ │       ├── dree.config.json
+ │       └── tree.txt
+ ├── LICENSE
+ ├── .npmignore
+ ├── package-lock.json
+ ├── package.json
+ ├── tsconfig.json
+ └── tslint.json
+```
+
 ## Build
 
 To build the module make sure you have Typescript installed or install the dev dependencies. After this, run:
