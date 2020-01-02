@@ -118,7 +118,7 @@ yargs
             type: 'boolean'
         },
         'throwIfNotTotal': {
-            default: false,
+            default: true,
             describe: 'If you want to throw a MongoCleanerCleanError when MongoDB is only partially cleaned.',
             type: 'boolean'
         },

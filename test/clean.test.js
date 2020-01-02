@@ -1,4 +1,4 @@
-module.exports = (expect, mongodb, execSync, mongoclean) => {
+module.exports = (expect, mongodb, execSync, mongoCleaner) => {
 
     describe('Test: clean function', function () {
 
@@ -10,7 +10,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should remove all databases except for admin`, async function () {
 
-            await mongoclean.clean();
+            await mongoCleaner.clean();
 
             const { MongoClient } = mongodb;
             const connection = await MongoClient.connect('mongodb://localhost:27017', {
@@ -27,7 +27,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should remove all collections except for system`, async function () {
 
-            await mongoclean.clean(null, null, {
+            await mongoCleaner.clean(null, null, {
                 dropDatabases: false,
                 emptyDatabases: true
             });
@@ -52,7 +52,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should remove only documents of collections`, async function () {
 
-            await mongoclean.clean(null, null, {
+            await mongoCleaner.clean(null, null, {
                 dropDatabases: false,
                 emptyDatabases: false,
                 emptyCollections: true
@@ -78,7 +78,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should keep computers database`, async function () {
 
-            await mongoclean.clean(null, null, {
+            await mongoCleaner.clean(null, null, {
                 keep: 'computers'
             });
 
@@ -97,7 +97,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should keep computers and animals databases`, async function () {
 
-            await mongoclean.clean(null, null, {
+            await mongoCleaner.clean(null, null, {
                 keep: ['computers', 'animals']
             });
 
@@ -118,7 +118,7 @@ module.exports = (expect, mongodb, execSync, mongoclean) => {
 
         it(`Should keep computers and cars databases`, async function () {
 
-            await mongoclean.clean(null, null, {
+            await mongoCleaner.clean(null, null, {
                 keep: /c/
             });
 

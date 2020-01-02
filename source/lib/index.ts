@@ -8,7 +8,7 @@ export * from './errors';
 
 /**
  * Tries to remove all the database of MongoDB.
- * @param uri The uri of the mongodb connection. Default: mongodb://localhost:27017
+ * @param uri The string uri of the mongodb connection. Default: mongodb://localhost:27017
  * @param connectionOptions The [[MongoCleanerConnectionOptions]] options for the connection. This function uses the npm module mongodb under
  * the hood, so these are the MongoClientOptions. By default, if not explicitly set to false, 
  * "useUnifiedTopology" and "useNewUrlParser" are set to true.
