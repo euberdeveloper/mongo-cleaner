@@ -2,8 +2,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/mongo-cleaner/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/mongo-cleaner?targetFile=package.json)
 [![dependencies Status](https://david-dm.org/euberdeveloper/mongo-cleaner/status.svg)](https://david-dm.org/euberdeveloper/mongo-cleaner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![License](https://img.shields.io/npm/l/mongo-cleaner.svg)](https://github.com/euberdeveloper/mongo-cleaner/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/euberdeveloper/mongo-cleaner.svg)](https://github.com/euberdeveloper/mongo-cleaner/issues)
+[![License](https://img.shields.io/npm/l/mongo-cleaner.svg?color=blue)](https://github.com/euberdeveloper/mongo-cleaner/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/euberdeveloper/mongo-cleaner.svg)](https://github.com/euberdeveloper/mongo-cleaner/stargazers)
 ![npm](https://img.shields.io/npm/v/mongo-cleaner.svg)
 
