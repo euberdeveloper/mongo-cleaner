@@ -25,7 +25,7 @@ export class Logger {
             }).start();
         }
     }
-    public stopDropDatabase(succeded: boolean, fallback?: boolean): void {
+    public stopDropDatabase(succeded: boolean, fallback?: boolean, permanent = true): void {
         if (this.log) {
             if (succeded) {
                 this.spinner.succeed();
@@ -79,6 +79,12 @@ export class Logger {
             else {
                 this.spinner.fail();
             }
+        }
+    }
+
+    public stopAndClear(): void {
+        if (this.log) {
+            this.spinner.stop();
         }
     }
 

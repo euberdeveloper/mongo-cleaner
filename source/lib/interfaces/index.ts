@@ -54,6 +54,18 @@ export interface MongoCleanerOptions {
      */
     emptyCollections?: boolean;
     /**
+     * The number of times a drop or empty operation is retried before throwing an error or passing to a fallback.
+     * 
+     * Default: 1
+     */
+    numberOfRetries?: number;
+    /**
+     * The number of milliseconds between two attempts of a drop or empty operation.
+     * 
+     * Default: 20
+     */
+    retryMilliseconds?: number;
+    /**
      * If you want to throw a [MongoCleanerCleanError] when MongoDB is only partially cleaned.
      * 
      * Default: false

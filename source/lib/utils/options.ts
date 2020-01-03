@@ -12,6 +12,8 @@ const DEFAULT_OPTIONS: MongoCleanerOptions = {
     dropDatabases: true,
     emptyCollections: false,
     emptyDatabases: false,
+    numberOfRetries: 1,
+    retryMilliseconds: 20,
     throwIfNotTotal: false
 };
 
@@ -33,6 +35,12 @@ export function mergeOptions(options: MongoCleanerOptions): MongoCleanerOptions 
     }
     if (!(merged.dropDatabases || merged.emptyDatabases || merged.emptyCollections)) {
         merged.emptyCollections = true;
+    }
+    if (typeof merged.numberOfRetries !== 'number') {
+        merged.numberOfRetries = 1;
+    }
+    if (typeof merged.retryMilliseconds !== 'number') {
+        merged.retryMilliseconds = 5;
     }
 
     return merged;

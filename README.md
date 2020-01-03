@@ -188,6 +188,8 @@ See __Usage__ to have an example.
 * __dropDatabases__: Default value: `true`. If you want to drop the whole database. NB: The admin database cannot be dropped and is ignored.
 * __emptyDatabases__: Default value: `false`. If you want to drop databases' collections without dropping the databases. If both "dropDatabases" and this options are true, this option will be used as a fallback if a database drop fails.
 * __emptyCollections__: Default value: `false`. If you want to empty collections without dropping them and their databases. If both "emptyDatabases" and this options are true, this option will be used as a fallback if a collection drop fails. NB: If "dropDatabases", "emptyDatabases" and "emptyCollections" are all false, this option will eventually become true.
+* __numberOfRetries__: Default value: `1`. The number of times a drop or empty operation is retried before throwing an error or passing to a fallback.
+* __retryMilliseconds__: Default value: `20`. The number of milliseconds between two attempts of a drop or empty operation.
 * __throwIfNotTotal__: Default value: `false`. If you want to throw a `MongoCleanerCleanError` when MongoDB is only partially cleaned.
 
 ## Project structure

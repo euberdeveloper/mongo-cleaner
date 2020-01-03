@@ -30,6 +30,8 @@ yargs
                 dropDatabases: args.dropDatabases,
                 emptyDatabases: args.emptyDatabases,
                 emptyCollections: args.emptyCollections,
+                numberOfRetries: args.numberOfRetries,
+                retryMilliseconds: args.retryMilliseconds,
                 throwIfNotTotal: args.throwIfNotTotal
             };
             await mongoCleaner.clean(getUri(uriOptions), null, options);
@@ -116,6 +118,16 @@ yargs
             default: false,
             describe: 'If you want to empty collections without dropping them and their databases. If both "emptyDatabases" and this options are true, this option will be used as a fallback if a collection drop fails.',
             type: 'boolean'
+        },
+        'numberOfRetries': {
+            default: 1,
+            describe: 'The number of times a drop or empty operation is retried before throwing an error or passing to a fallback.',
+            type: 'number'
+        },
+        'retryMilliseconds': {
+            default: 20,
+            describe: 'The number of milliseconds between two attempts of a drop or empty operation.',
+            type: 'number'
         },
         'throwIfNotTotal': {
             default: true,
