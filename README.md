@@ -170,7 +170,7 @@ $ mongo-cleaner --help
 
 **Description:**
 
-Tries to remove all the database of MongoDB. 
+Tries to remove all the databases of MongoDB. 
 The function is __asynchronous__ and returns nothing.
 See __Usage__ to have an example.
 
