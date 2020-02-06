@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/euberdeveloper/mongo-cleaner.svg?branch=master)](https://travis-ci.org/euberdeveloper/mongo-cleaner)
+[![Types](https://img.shields.io/npm/types/mongo-cleaner.svg)](https://www.npmjs.com/package/mongo-cleaner)
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/mongo-cleaner/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/mongo-cleaner?targetFile=package.json)
 [![dependencies Status](https://david-dm.org/euberdeveloper/mongo-cleaner/status.svg)](https://david-dm.org/euberdeveloper/mongo-cleaner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
@@ -8,6 +9,7 @@
 ![npm](https://img.shields.io/npm/v/mongo-cleaner.svg)
 
 # mongo-cleaner
+
 An npm module to quickly clean your mongodb, both from code and cli.
 
 ## Install
