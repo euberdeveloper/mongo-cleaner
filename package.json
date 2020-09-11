@@ -1,6 +1,6 @@
 {
   "name": "mongo-cleaner",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
@@ -42,28 +42,28 @@
   },
   "homepage": "https://github.com/euberdeveloper/mongo-cleaner#readme",
   "dependencies": {
-    "inquirer": "^7.0.1",
-    "mongodb": "^3.4.1",
-    "ora": "^4.0.3",
-    "yargs": "^15.0.2"
+    "inquirer": "^7.3.3",
+    "mongodb": "^3.6.2",
+    "ora": "^5.1.0",
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
-    "@types/inquirer": "^6.5.0",
-    "@types/mongodb": "^3.3.14",
-    "@types/node": "^13.1.2",
-    "@types/yargs": "^13.0.4",
+    "@types/inquirer": "^7.3.1",
+    "@types/mongodb": "^3.5.27",
+    "@types/node": "^14.10.0",
+    "@types/yargs": "^15.0.5",
     "chai": "^4.2.0",
-    "codecov": "^3.6.1",
-    "commitizen": "^4.0.3",
-    "coveralls": "^3.0.9",
-    "cz-conventional-changelog": "^3.0.2",
-    "dree": "^2.4.6",
-    "mocha": "^6.2.2",
-    "nyc": "^15.0.0",
-    "tslint": "^5.20.1",
-    "typedoc": "^0.15.6",
-    "typedoc-plugin-markdown": "^2.2.14",
-    "typescript": "^3.7.4"
+    "codecov": "^3.7.2",
+    "commitizen": "^4.2.1",
+    "coveralls": "^3.1.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "dree": "^2.4.15",
+    "mocha": "^8.1.3",
+    "nyc": "^15.1.0",
+    "tslint": "^6.1.3",
+    "typedoc": "^0.19.1",
+    "typedoc-plugin-markdown": "^2.4.2",
+    "typescript": "^4.0.2"
   },
   "config": {
     "commitizen": {
