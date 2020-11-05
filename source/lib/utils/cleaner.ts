@@ -50,7 +50,7 @@ export class Cleaner {
                 typeof pattern === 'string' && database !== pattern)
                 || pattern instanceof RegExp && !pattern.test(database)
                 || typeof pattern === 'function' && !pattern(database)
-            )
+            );
     }
 
     private async getDatabases(): Promise<string[]> {
