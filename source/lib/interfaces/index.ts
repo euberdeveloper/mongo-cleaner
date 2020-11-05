@@ -17,11 +17,11 @@ export interface MongoCleanerOptions {
      */
     noConfirm?: boolean;
     /**
-     * A string, a RegExp or an array of both specifying databases that will not be cleaned.
+     * A string, a RegExp, a function or an array of both specifying databases that will not be cleaned.
      * 
      * Default: []
      */
-    keep?: string | RegExp | (string | RegExp)[];
+    keep?: string | RegExp | ((db: string) => boolean) | (string | RegExp | ((db: string) => boolean))[];
     /**
      * If you want to display the clean method's log on console.
      * 

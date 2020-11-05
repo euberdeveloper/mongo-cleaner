@@ -45,8 +45,12 @@ export class Cleaner {
     }
 
     private filterDatabase(database: string): boolean {
-        return (this.options.keep as (string | RegExp)[])
-            .every(pattern => typeof pattern === 'string' ? database !== pattern : !pattern.test(database));
+        return (this.options.keep as (string | RegExp | ((db: string) => boolean))[])
+            .every(pattern =>  (
+                typeof pattern === 'string' && database !== pattern)
+                || pattern instanceof RegExp && !pattern.test(database)
+                || typeof pattern === 'function' && !pattern(database)
+            )
     }
 
     private async getDatabases(): Promise<string[]> {

@@ -137,6 +137,48 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
 
         });
 
+        it(`Should keep computers and cars databases`, async function () {
+
+            await mongoCleaner.clean(null, null, {
+                keep: /c/
+            });
+
+            const { MongoClient } = mongodb;
+            const connection = await MongoClient.connect('mongodb://localhost:27017', {
+                useUnifiedTopology: true,
+                useNewUrlParser: true
+            });
+            const databases = (await connection.db().admin().listDatabases())
+                .databases.map(database => database.name);
+            await connection.close();
+
+            expect(databases).to.be.an('array').that.does.not.include('animals');
+            expect(databases).to.be.an('array').that.does.include('computers');
+            expect(databases).to.be.an('array').that.does.include('cars');
+
+        });
+
+        it(`Should keep databases beginning with 'c'`, async function () {
+
+            await mongoCleaner.clean(null, null, {
+                keep: database => database[0] === 'c'
+            });
+
+            const { MongoClient } = mongodb;
+            const connection = await MongoClient.connect('mongodb://localhost:27017', {
+                useUnifiedTopology: true,
+                useNewUrlParser: true
+            });
+            const databases = (await connection.db().admin().listDatabases())
+                .databases.map(database => database.name);
+            await connection.close();
+
+            expect(databases).to.be.an('array').that.does.not.include('animals');
+            expect(databases).to.be.an('array').that.does.include('computers');
+            expect(databases).to.be.an('array').that.does.include('cars');
+
+        });
+
     });
 
 };

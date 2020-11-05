@@ -185,7 +185,7 @@ See __Usage__ to have an example.
 **MongoCleanerOptions parameters:**
 
 * __noConfirm__: Default value: `true`. If you want the method to skip asking confirm before cleaning the MongoDB.
-* __keep__: Default value: `[]`. A `string`, a `RegExp` or an `array of both` specifying databases that will not be cleaned.
+* __keep__: Default value: `[]`. A `string`, a `RegExp`, a `(db: name) => boolean` or an `array of all of them` specifying databases that will not be cleaned.
 * __log__: Default value: `false`. If you want to display the clean method's log on console. 
 * __dropDatabases__: Default value: `true`. If you want to drop the whole database. NB: The admin database cannot be dropped and is ignored.
 * __emptyDatabases__: Default value: `false`. If you want to drop databases' collections without dropping the databases. If both "dropDatabases" and this options are true, this option will be used as a fallback if a database drop fails.
