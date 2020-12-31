@@ -18,10 +18,9 @@
     "cover:codecov": "nyc report --extension=ts --reporter=text-lcov > coverage.lcov && codecov",
     "cover": "npm run cover:coveralls && npm run cover:codecov",
     "docs:tree": "dree parse . --dest docs/tree --name tree --options docs/tree/dree.config.json",
-    "docs:html": "typedoc --out docs/html source/lib --plugin none --excludeNotExported --mode file --gaID $GA_TOKEN",
-    "docs:markdown": "typedoc --out docs/markdown source/lib --plugin typedoc-plugin-markdown --theme markdown --excludeNotExported --mode file",
-    "docs:deploy": "now docs/html --name mongo-cleaner --prod --token $NOW_TOKEN",
-    "docs": "npm run docs:html && npm run docs:markdown && npm run docs:deploy",
+    "docs:html": "typedoc",
+    "docs:html-dev": "typedoc --options typedoc.dev.js",
+    "docs": "npm run docs:html && npm run docs:html-dev && npm run docs:tree",
     "commit": "git-cz"
   },
   "files": [
@@ -74,7 +73,6 @@
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "typedoc": "^0.20.5",
-    "typedoc-plugin-markdown": "^3.2.1",
     "typescript": "^4.1.3"
   },
   "config": {
