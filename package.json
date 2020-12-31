@@ -49,9 +49,9 @@
   "homepage": "https://github.com/euberdeveloper/mongo-cleaner#readme",
   "dependencies": {
     "inquirer": "^7.3.3",
-    "mongodb": "^3.6.2",
-    "ora": "^5.1.0",
-    "yargs": "^16.0.3"
+    "mongodb": "^3.6.3",
+    "ora": "^5.2.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/inquirer": "^7.3.1",
