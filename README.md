@@ -1,3 +1,6 @@
+![Build](https://github.com/euberdeveloper/mongo-cleaner/workflows/Build/badge.svg)
+![Test](https://github.com/euberdeveloper/mongo-cleaner/workflows/Test/badge.svg)
+![Lint](https://github.com/euberdeveloper/mongo-cleaner/workflows/Lint/badge.svg)
 [![Build Status](https://travis-ci.org/euberdeveloper/mongo-cleaner.svg?branch=master)](https://travis-ci.org/euberdeveloper/mongo-cleaner)
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/mongo-cleaner/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/mongo-cleaner?targetFile=package.json)
 [![dependencies Status](https://david-dm.org/euberdeveloper/mongo-cleaner/status.svg)](https://david-dm.org/euberdeveloper/mongo-cleaner)
