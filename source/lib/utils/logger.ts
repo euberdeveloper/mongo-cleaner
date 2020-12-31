@@ -3,8 +3,7 @@ import { Ora } from 'ora';
 import { MongoCleanerOptions } from '../interfaces';
 
 export class Logger {
-
-    private log: boolean;
+    private readonly log: boolean;
     private spinner: Ora;
 
     constructor(options: MongoCleanerOptions) {
@@ -25,15 +24,13 @@ export class Logger {
             }).start();
         }
     }
-    public stopDropDatabase(succeded: boolean, fallback?: boolean, permanent = true): void {
+    public stopDropDatabase(succeded: boolean, fallback?: boolean): void {
         if (this.log) {
             if (succeded) {
                 this.spinner.succeed();
-            }
-            else if (fallback) {
+            } else if (fallback) {
                 this.spinner.warn();
-            }
-            else {
+            } else {
                 this.spinner.fail();
             }
         }
@@ -52,11 +49,9 @@ export class Logger {
         if (this.log) {
             if (succeded) {
                 this.spinner.succeed();
-            }
-            else if (fallback) {
+            } else if (fallback) {
                 this.spinner.warn();
-            }
-            else {
+            } else {
                 this.spinner.fail();
             }
         }
@@ -75,8 +70,7 @@ export class Logger {
         if (this.log) {
             if (succeded) {
                 this.spinner.succeed();
-            }
-            else {
+            } else {
                 this.spinner.fail();
             }
         }
@@ -87,6 +81,4 @@ export class Logger {
             this.spinner.stop();
         }
     }
-
-
 }

@@ -8,7 +8,12 @@ export class MongoCleanerConnectionError extends MongoCleanerError {
     /** The MongoClient connection-options of the failed connection */
     public connectionOptions: MongoCleanerConnectionOptions;
 
-    constructor(message?: string, uri?: string, connectionOptions?: MongoCleanerConnectionOptions, triggerError?: Error) {
+    constructor(
+        message?: string,
+        uri?: string,
+        connectionOptions?: MongoCleanerConnectionOptions,
+        triggerError?: Error
+    ) {
         super(message);
         this.name = 'MongoCleanerConnectionError';
         this.message = message || 'MongoCleaner: Error in connecting to mongodb';

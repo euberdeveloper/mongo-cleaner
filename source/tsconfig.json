@@ -6,12 +6,12 @@
         "lib": [
             "es2015"
         ],
-        "outDir": "dist",
+        "outDir": "../dist",
         "sourceMap": true,
         "declaration": true
     },
     "include": [
-        "source/lib/index.ts",
-        "source/bin/index.ts"
+        "lib",
+        "bin"
     ]
 }

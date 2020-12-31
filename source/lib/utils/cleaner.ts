@@ -8,12 +8,11 @@ import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError';
 import { Logger } from './logger';
 
 export class Cleaner {
-
-    private uri: string;
-    private connectionOptions: MongoCleanerConnectionOptions;
-    private options: MongoCleanerOptions;
+    private readonly uri: string;
+    private readonly connectionOptions: MongoCleanerConnectionOptions;
+    private readonly options: MongoCleanerOptions;
     private connection: MongoClient;
-    private logger: Logger;
+    private readonly logger: Logger;
 
     constructor(uri: string, connectionOptions: MongoCleanerConnectionOptions, options: MongoCleanerOptions) {
         this.uri = uri;
@@ -29,8 +28,7 @@ export class Cleaner {
     private async connect(): Promise<void> {
         try {
             this.connection = await MongoClient.connect(this.uri, this.connectionOptions);
-        }
-        catch (error) {
+        } catch (error) {
             throw new MongoCleanerConnectionError(null, this.uri, this.connectionOptions, error);
         }
     }
@@ -38,28 +36,26 @@ export class Cleaner {
     private async disconnect(): Promise<void> {
         try {
             await this.connection.close();
-        }
-        catch (error) {
+        } catch (error) {
             throw new MongoCleanerDisconnectionError(null, this.uri, error);
         }
     }
 
     private filterDatabase(database: string): boolean {
-        return (this.options.keep as (string | RegExp | ((db: string) => boolean))[])
-            .every(pattern =>  (
-                typeof pattern === 'string' && database !== pattern)
-                || pattern instanceof RegExp && !pattern.test(database)
-                || typeof pattern === 'function' && !pattern(database)
-            );
+        return (this.options.keep as (string | RegExp | ((db: string) => boolean))[]).every(
+            pattern =>
+                (typeof pattern === 'string' && database !== pattern) ||
+                (pattern instanceof RegExp && !pattern.test(database)) ||
+                (typeof pattern === 'function' && !pattern(database))
+        );
     }
 
     private async getDatabases(): Promise<string[]> {
         try {
-            return (await this.connection.db().admin().listDatabases())
-                .databases.map(database => database.name)
+            return (await this.connection.db().admin().listDatabases()).databases
+                .map(database => database.name)
                 .filter((database: string) => this.filterDatabase(database));
-        }
-        catch (error) {
+        } catch (error) {
             throw new MongoCleanerListDatabasesError(null, error);
         }
     }
@@ -69,8 +65,7 @@ export class Cleaner {
             return (await this.connection.db(database).listCollections().toArray())
                 .map(collection => collection.name)
                 .filter((collection: string) => !/^system./.test(collection));
-        }
-        catch (error) {
+        } catch (error) {
             if (this.options.throwIfNotTotal) {
                 throw new MongoCleanerListCollectionsError(null, database, error);
             }
@@ -82,17 +77,20 @@ export class Cleaner {
             this.logger.startEmptyCollection(collection);
             await this.connection.db(database).collection(collection).deleteMany({});
             this.logger.stopEmptyCollection(true);
-        }
-        catch (error) {
+        } catch (error) {
             if (attempts > 0) {
                 this.logger.stopAndClear();
                 await this.sleep(this.options.retryMilliseconds);
                 await this.emptyCollection(database, collection, attempts - 1);
-            }
-            else {
+            } else {
                 this.logger.stopEmptyCollection(false);
                 if (this.options.throwIfNotTotal) {
-                    throw new MongoCleanerCleanError('MongoCleaner: Error in emptying collection', database, collection, error);
+                    throw new MongoCleanerCleanError(
+                        'MongoCleaner: Error in emptying collection',
+                        database,
+                        collection,
+                        error
+                    );
                 }
             }
         }
@@ -103,21 +101,23 @@ export class Cleaner {
             this.logger.startDropCollection(collection);
             await this.connection.db(database).dropCollection(collection);
             this.logger.stopDropCollection(true);
-        }
-        catch (error) {
+        } catch (error) {
             if (attempts > 0) {
                 this.logger.stopAndClear();
                 await this.sleep(this.options.retryMilliseconds);
                 await this.cleanCollection(database, collection, attempts - 1);
-            }
-            else if (this.options.emptyCollections) {
+            } else if (this.options.emptyCollections) {
                 this.logger.stopDropCollection(false, true);
                 await this.emptyCollection(database, collection, this.options.numberOfRetries);
-            }
-            else {
+            } else {
                 this.logger.stopDropCollection(false, false);
                 if (this.options.throwIfNotTotal) {
-                    throw new MongoCleanerCleanError('MongoCleaner: Error in dropping collection', database, collection, error);
+                    throw new MongoCleanerCleanError(
+                        'MongoCleaner: Error in dropping collection',
+                        database,
+                        collection,
+                        error
+                    );
                 }
             }
         }
@@ -129,8 +129,7 @@ export class Cleaner {
         for (const collection of collections) {
             if (this.options.emptyDatabases) {
                 await this.cleanCollection(database, collection, this.options.numberOfRetries);
-            }
-            else {
+            } else {
                 await this.emptyCollection(database, collection, this.options.numberOfRetries);
             }
         }
@@ -141,21 +140,17 @@ export class Cleaner {
             this.logger.startDropDatabase(database);
             await this.connection.db(database).dropDatabase();
             this.logger.stopDropDatabase(true);
-        }
-        catch (error) {
+        } catch (error) {
             if (database === 'admin') {
                 this.logger.stopDropDatabase(false, true);
-            }
-            else if (attempts > 0) {
+            } else if (attempts > 0) {
                 this.logger.stopAndClear();
                 await this.sleep(this.options.retryMilliseconds);
                 await this.cleanDatabase(database, attempts - 1);
-            }
-            else if (this.options.emptyDatabases || this.options.emptyCollections) {
+            } else if (this.options.emptyDatabases || this.options.emptyCollections) {
                 this.logger.stopDropDatabase(false, true);
                 await this.emptyDatabase(database);
-            }
-            else {
+            } else {
                 this.logger.stopDropDatabase(false, false);
                 if (this.options.throwIfNotTotal && database !== 'admin') {
                     throw new MongoCleanerCleanError('MongoCleaner: Error in dropping database', database, null, error);
@@ -166,15 +161,12 @@ export class Cleaner {
 
     private async cleanDatabases(databases: string[]): Promise<void> {
         for (const database of databases) {
-
             if (this.options.dropDatabases) {
                 await this.cleanDatabase(database, this.options.numberOfRetries);
-            }
-            else {
+            } else {
                 this.logger.printDatabase(database);
                 await this.emptyDatabase(database);
             }
-
         }
     }
 
@@ -184,5 +176,4 @@ export class Cleaner {
         await this.cleanDatabases(databases);
         await this.disconnect();
     }
-
 }

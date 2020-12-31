@@ -39,106 +39,110 @@ yargs
     )
     .demandCommand(1, 'You must specify a command')
     .options({
-        'uri': {
+        uri: {
             describe: 'The uri of the Connection options:',
             type: 'string',
             group: 'Connection options:'
         },
-        'host': {
+        host: {
             default: 'localhost',
             describe: 'The host of the connection. Ignored if also uri is specified',
             type: 'string',
             group: 'Connection options:'
         },
-        'port': {
+        port: {
             default: 27017,
             describe: 'The port of the connection. Ignored if also uri is specified',
             type: 'number',
             group: 'Connection options:'
         },
-        'db': {
+        db: {
             default: '',
             describe: 'The database of the connection. Ignored if also uri is specified',
             type: 'string',
             group: 'Connection options:'
         },
-        'username': {
+        username: {
             default: '',
             describe: 'The username of the connection. Ignored if also uri is specified',
             type: 'string',
             group: 'Connection options:'
         },
-        'password': {
+        password: {
             default: '',
             describe: 'The password of the connection. Ignored if also uri is specified',
             type: 'string',
             group: 'Connection options:'
         },
-        'srv': {
+        srv: {
             default: false,
             describe: 'If the connection uri uses srv. Ignore if also uri is specified',
             type: 'boolean',
             group: 'Connection options:'
         },
-        'connectionOptions': {
+        connectionOptions: {
             default: '{}',
             describe: 'The connection options object passed to MongoClient. Note: string parsed with JSON.parse',
             type: 'string',
             group: 'Connection options:',
-            coerce: value => typeof value === 'object' ? value : JSON.parse(value)
+            coerce: value => (typeof value === 'object' ? value : JSON.parse(value))
         },
-        'noConfirm': {
+        noConfirm: {
             alias: 'y',
             default: false,
             describe: 'If you want the module to skip asking confirm before executing',
             type: 'boolean'
         },
-        'keep': {
+        keep: {
             default: [],
             describe: 'An array of strings and RegExp specifying databases that will not be cleaned',
             type: 'array',
             coerce: parseKeep
         },
-        'log': {
+        log: {
             default: true,
-            describe: 'If you want to display the clean method\'s log on console',
+            describe: "If you want to display the clean method's log on console",
             type: 'boolean'
         },
-        'dropDatabases': {
+        dropDatabases: {
             default: true,
-            describe: 'If you want to drop the whole database. Note: The admin database cannot be dropped and is ignored',
+            describe:
+                'If you want to drop the whole database. Note: The admin database cannot be dropped and is ignored',
             type: 'boolean'
         },
-        'emptyDatabases': {
+        emptyDatabases: {
             default: false,
-            describe: 'If you want to drop databases\' collections without dropping the databases. If both "dropDatabases" and this options are true, this option will be used as a fallback if a database drop fails.',
+            describe:
+                'If you want to drop databases\' collections without dropping the databases. If both "dropDatabases" and this options are true, this option will be used as a fallback if a database drop fails.',
             type: 'boolean'
         },
-        'emptyCollections': {
+        emptyCollections: {
             default: false,
-            describe: 'If you want to empty collections without dropping them and their databases. If both "emptyDatabases" and this options are true, this option will be used as a fallback if a collection drop fails.',
+            describe:
+                'If you want to empty collections without dropping them and their databases. If both "emptyDatabases" and this options are true, this option will be used as a fallback if a collection drop fails.',
             type: 'boolean'
         },
-        'numberOfRetries': {
+        numberOfRetries: {
             default: 1,
-            describe: 'The number of times a drop or empty operation is retried before throwing an error or passing to a fallback.',
+            describe:
+                'The number of times a drop or empty operation is retried before throwing an error or passing to a fallback.',
             type: 'number'
         },
-        'retryMilliseconds': {
+        retryMilliseconds: {
             default: 20,
             describe: 'The number of milliseconds between two attempts of a drop or empty operation.',
             type: 'number'
         },
-        'throwIfNotTotal': {
+        throwIfNotTotal: {
             default: true,
             describe: 'If you want to throw a MongoCleanerCleanError when MongoDB is only partially cleaned.',
             type: 'boolean'
         },
-        'options': {
+        options: {
             alias: 'o',
-            describe: 'A path to a json config file. If an option is both on the file and in the command, the command one will be considered',
+            describe:
+                'A path to a json config file. If an option is both on the file and in the command, the command one will be considered',
             config: true
         }
     })
-    .epilogue('For more information, find our manual at https://github.com/euberdeveloper/mongo-cleaner#readme')
-    .argv;
+    .epilogue('For more information, find our manual at https://github.com/euberdeveloper/mongo-cleaner#readme').argv;
