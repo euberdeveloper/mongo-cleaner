@@ -9,10 +9,10 @@ export * from './errors';
 /**
  * Tries to remove all the database of MongoDB.
  * @param uri The string uri of the mongodb connection. Default: mongodb://localhost:27017
- * @param connectionOptions The [[MongoCleanerConnectionOptions]] options for the connection. This function uses the npm module mongodb under
+ * @param connectionOptions The [[MongoCleanerConnectionOptions | options]] for the connection. This function uses the npm module mongodb under
  * the hood, so these are the MongoClientOptions. By default, if not explicitly set to false,
  * "useUnifiedTopology" and "useNewUrlParser" are set to true.
- * @param options The [[MongoCleanerOptions]] for the cleaner. You can specify things such as
+ * @param options The [[MongoCleanerOptions | options]] for the cleaner. You can specify things such as
  * asking a confirm before cleaning, databases to be kept, keeping collections and removing their documents.
  */
 export async function clean(

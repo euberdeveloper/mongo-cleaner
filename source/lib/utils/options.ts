@@ -27,7 +27,7 @@ const DEFAULT_OPTIONS: MongoCleanerOptions = {
 };
 
 /**
- * Fallbakcs the given uri with the [[DEFAULT_URI | default uri]].
+ * Fallbakcs the given uri with the default uri.
  * @param uri The uri to fallback.
  * @returns The fallbacked uri.
  */
@@ -35,7 +35,7 @@ export function mergeUri(uri: string): string {
     return uri || DEFAULT_URI;
 }
 /**
- * Fallbakcs the given connection options with the [[DEFAULT_CONNECTION_OPTIONS | default connection options]].
+ * Fallbakcs the given connection options with the default connection options.
  * @param options The connection options to fallback.
  * @returns The fallbacked connection options.
  */
@@ -43,7 +43,7 @@ export function mergeConnectionOptions(options: MongoCleanerConnectionOptions): 
     return options ? { ...DEFAULT_CONNECTION_OPTIONS, ...options } : DEFAULT_CONNECTION_OPTIONS;
 }
 /**
- * Fallbakcs the given cleaner options with the [[DEFAULT_OPTIONS | default cleaner options]].
+ * Fallbakcs the given cleaner options with the default cleaner options.
  * @param options The cleaner options to fallback.
  * @returns The fallbacked cleaner options.
  */
