@@ -7,6 +7,13 @@ export class MongoCleanerCleanError extends MongoCleanerError {
     /** The collection that cannot be dropped or emptied. Null, if the problem is with a database */
     public collection: string;
 
+    /**
+     * The constructor of the MongoCleanerError class.
+     * @param message The message of the error.
+     * @param database The database that was attempted to be cleaned.
+     * @param collection The collection that was attempted to be cleaned.
+     * @param triggerError The original error that triggered this error.
+     */
     constructor(message?: string, database?: string, collection?: string, triggerError?: Error) {
         super(message);
         this.name = 'MongoCleanerCleanError';

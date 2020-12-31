@@ -7,13 +7,37 @@ import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from
 import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError';
 import { Logger } from './logger';
 
+/**
+ * The class that handles the cleaning code, doing the bigger part of the job.
+ */
 export class Cleaner {
+    /**
+     * The uri for the MongoDB database.
+     */
     private readonly uri: string;
+    /**
+     * The connection options to the MongoDB.
+     */
     private readonly connectionOptions: MongoCleanerConnectionOptions;
+    /**
+     * The options for the cleaner.
+     */
     private readonly options: MongoCleanerOptions;
+    /**
+     * The MongoDB connection.
+     */
     private connection: MongoClient;
+    /**
+     * The instance of the logger.
+     */
     private readonly logger: Logger;
 
+    /**
+     * The constructor of the class.
+     * @param uri The uri for the MongoDB database.
+     * @param connectionOptions The connection options to the MongoDB.
+     * @param options The options for the cleaner.
+     */
     constructor(uri: string, connectionOptions: MongoCleanerConnectionOptions, options: MongoCleanerOptions) {
         this.uri = uri;
         this.connectionOptions = connectionOptions;
@@ -21,10 +45,18 @@ export class Cleaner {
         this.logger = new Logger(options);
     }
 
+    /**
+     * A method returning a promise that waits the passed number of milliseconds.
+     * @param millisecond The number of milliseconds.
+     */
     private async sleep(millisecond: number): Promise<void> {
         return new Promise(resolve => setTimeout(resolve, millisecond));
     }
 
+    /**
+     * The method for connecting to the database.
+     * @throws MongoCleanerConnectionError
+     */
     private async connect(): Promise<void> {
         try {
             this.connection = await MongoClient.connect(this.uri, this.connectionOptions);
@@ -33,6 +65,10 @@ export class Cleaner {
         }
     }
 
+    /**
+     * The method for disconnecting to the database.
+     * @throws MongoCleanerDisconnectionError
+     */
     private async disconnect(): Promise<void> {
         try {
             await this.connection.close();
@@ -41,6 +77,11 @@ export class Cleaner {
         }
     }
 
+    /**
+     * A method that passed a database name, based on the instance options, reurns true if the database is to be cleaned or false otherwise.
+     * @param database The database name.
+     * @returns If the database is to be cleaned.
+     */
     private filterDatabase(database: string): boolean {
         return (this.options.keep as (string | RegExp | ((db: string) => boolean))[]).every(
             pattern =>
@@ -50,6 +91,11 @@ export class Cleaner {
         );
     }
 
+    /**
+     * Fetches from MongoDB all the databases and returns the ones that are to be cleaned.
+     * @returns The databases that are to be cleaned.
+     * @throws MongoCleanerListDatabasesError
+     */
     private async getDatabases(): Promise<string[]> {
         try {
             return (await this.connection.db().admin().listDatabases()).databases
@@ -60,6 +106,12 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Fetches from MongoDB all the collections of a database and returns the ones that are to be cleaned.
+     * @param database The database whose collections will be fetched.
+     * @returns The collections of the database that are to be cleaned.
+     * @throws MongoCleanerListCollectionsError
+     */
     private async getCollections(database: string): Promise<string[]> {
         try {
             return (await this.connection.db(database).listCollections().toArray())
@@ -72,6 +124,13 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Empties a collection, by removing all its documents.
+     * @param database The database of the collection.
+     * @param collection The collection to empty.
+     * @param attempts The number of remaining attempts to empty the collection, after which an error could be thrown.
+     * @throws MongoCleanerCleanError
+     */
     private async emptyCollection(database: string, collection: string, attempts: number): Promise<void> {
         try {
             this.logger.startEmptyCollection(collection);
@@ -96,6 +155,13 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Cleans a collection, by removing it.
+     * @param database The database of the collection.
+     * @param collection The collection to empty.
+     * @param attempts The number of remaining attempts to clean the collection, after which an error could be thrown.
+     * @throws MongoCleanerCleanError
+     */
     private async cleanCollection(database: string, collection: string, attempts: number): Promise<void> {
         try {
             this.logger.startDropCollection(collection);
@@ -123,6 +189,10 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Empties a database, by removing all its collections.
+     * @param database The database to empty.
+     */
     private async emptyDatabase(database: string): Promise<void> {
         const collections = await this.getCollections(database);
 
@@ -135,6 +205,12 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Cleans a database, by removing it.
+     * @param database The database to clean.
+     * @param attempts The number of remaining attempts to clean the database, after which an error could be thrown.
+     * @throws MongoCleanerCleanError
+     */
     private async cleanDatabase(database: string, attempts: number): Promise<void> {
         try {
             this.logger.startDropDatabase(database);
@@ -159,6 +235,10 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Cleans an array of databases.
+     * @param databases The database to be cleaned.
+     */
     private async cleanDatabases(databases: string[]): Promise<void> {
         for (const database of databases) {
             if (this.options.dropDatabases) {
@@ -170,6 +250,10 @@ export class Cleaner {
         }
     }
 
+    /**
+     * Does the whole process of cleaning the databases, based on the options given to the class constructor.
+     * @throws MongoCleanerCleanError
+     */
     public async clean(): Promise<void> {
         await this.connect();
         const databases = await this.getDatabases();
