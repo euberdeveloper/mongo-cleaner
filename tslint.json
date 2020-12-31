@@ -1,9 +1,0 @@
-{
-    "rules": {
-        "max-line-length": {
-            "options": [300]
-        },
-        "semicolon": true,
-        "quotemark": [true, "single", "backtick"]
-    }
-}
