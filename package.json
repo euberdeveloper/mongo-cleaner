@@ -22,6 +22,12 @@
     "docs": "npm run docs:html && npm run docs:markdown && npm run docs:deploy",
     "commit": "git-cz"
   },
+  "files": [
+    "package.json",
+    "bundled",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/euberdeveloper/mongo-cleaner.git"
