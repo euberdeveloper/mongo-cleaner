@@ -26,6 +26,7 @@
     "docs:html-dev": "typedoc --options typedoc.dev.js",
     "docs": "npm run docs:html && npm run docs:html-dev && npm run docs:tree",
     "commit": "git-cz",
+    "commit:sign": "git-cz -S",
     "prepublishOnly": "npm run bundle"
   },
   "files": [
