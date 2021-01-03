@@ -1,25 +1,29 @@
 module.exports = (expect, mongodb, execSync, mongoCleaner) => {
 
     describe('Test: clean function', function () {
+        let connection;
 
         this.slow(1000);
         this.timeout(0);
-        this.beforeEach(() => {
+        this.beforeEach(async () => {
             execSync('npm run db:populate -- --quiet', { silent: true });
+
+            const { MongoClient } = mongodb;
+            connection = await MongoClient.connect('mongodb://localhost:27017', {
+                useUnifiedTopology: true,
+                useNewUrlParser: true
+            });
+        });
+        this.afterEach(async () => {
+            await connection.close();
         });
 
         it(`Should remove all databases except for admin`, async function () {
 
             await mongoCleaner.clean();
-
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
+            
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.include('admin');
             expect(databases.length).to.equal(1);
@@ -32,11 +36,6 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 emptyDatabases: true
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
             let collections = [];
@@ -45,7 +44,6 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                     .map(collection => collection.name)
                     .filter(collection => !/^system./.test(collection))];
             }
-            await connection.close();
 
             expect(collections).to.be.empty;
         });
@@ -58,11 +56,6 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 emptyCollections: true
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
             let collections = [];
@@ -71,7 +64,6 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                     .map(collection => collection.name)
                     .filter(collection => !/^system./.test(collection))];
             }
-            await connection.close();
 
             expect(collections).to.not.be.empty;
         });
@@ -82,14 +74,8 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 keep: 'computers'
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.not.include('animals');
             expect(databases).to.be.an('array').that.does.include('computers');
@@ -101,14 +87,8 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 keep: ['computers', 'animals']
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.not.include('cars');
             expect(databases).to.be.an('array').that.does.include('computers');
@@ -122,14 +102,8 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 keep: /c/
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.not.include('animals');
             expect(databases).to.be.an('array').that.does.include('computers');
@@ -143,14 +117,8 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 keep: /c/
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.not.include('animals');
             expect(databases).to.be.an('array').that.does.include('computers');
@@ -164,14 +132,8 @@ module.exports = (expect, mongodb, execSync, mongoCleaner) => {
                 keep: database => database[0] === 'c'
             });
 
-            const { MongoClient } = mongodb;
-            const connection = await MongoClient.connect('mongodb://localhost:27017', {
-                useUnifiedTopology: true,
-                useNewUrlParser: true
-            });
             const databases = (await connection.db().admin().listDatabases())
                 .databases.map(database => database.name);
-            await connection.close();
 
             expect(databases).to.be.an('array').that.does.not.include('animals');
             expect(databases).to.be.an('array').that.does.include('computers');
