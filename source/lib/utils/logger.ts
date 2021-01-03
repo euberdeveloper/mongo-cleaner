@@ -121,7 +121,7 @@ export class Logger {
     }
 
     /**
-     * Stops the current spinner.
+     * Stops the current spinner, deleting its last output.
      */
     public stopAndClear(): void {
         if (this.log) {
