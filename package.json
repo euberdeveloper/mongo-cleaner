@@ -94,5 +94,11 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "source/bin"
+    ]
   }
 }
