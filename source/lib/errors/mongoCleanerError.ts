@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /** An error in the mongo-cleaner module */
 export class MongoCleanerError extends Error {
+    protected __proto__: Error;
+
     /** The error that happened */
     public triggerError: Error;
 
@@ -9,8 +13,12 @@ export class MongoCleanerError extends Error {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, triggerError?: Error) {
+        // This includes a trick in order to make the instanceof properly work
+        const trueProto = new.target.prototype;
         super(message);
+        this.__proto__ = trueProto;
+
         this.name = 'MongoCleanerError';
-        this.triggerError = triggerError || null;
+        this.triggerError = triggerError ?? null;
     }
 }
