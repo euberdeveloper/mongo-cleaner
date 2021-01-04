@@ -13,5 +13,6 @@ describe('MongoBack module tests', function() {
     require('./errors.test')(chai.expect, mongoclean);
     require('./logger.test')(chai.expect, sinon);
     require('./options.test')(chai.expect);
+    require('./askConfirm.test')(chai.expect, sinon);
 
 });
