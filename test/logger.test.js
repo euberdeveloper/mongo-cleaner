@@ -184,6 +184,8 @@ module.exports = (expect, sinon) => {
             expect(stubOra).to.have.callCount(0);
             expect(stubStart).to.have.callCount(0);
             expect(stubSucceeded).to.have.callCount(0);
+            expect(stubWarn).to.have.callCount(0);
+            expect(stubFail).to.have.callCount(0);
         });
 
         /* startDropCollection */
@@ -339,6 +341,8 @@ module.exports = (expect, sinon) => {
             expect(stubOra).to.have.callCount(0);
             expect(stubStart).to.have.callCount(0);
             expect(stubSucceeded).to.have.callCount(0);
+            expect(stubWarn).to.have.callCount(0);
+            expect(stubFail).to.have.callCount(0);
         });
 
         /* startEmptyCollection */
@@ -373,6 +377,87 @@ module.exports = (expect, sinon) => {
             logger.startEmptyCollection('collection');
 
             expect(stubOra).to.have.callCount(0);
+        });
+
+        /* stopEmptyCollection */
+
+        it(`Should properly execute stopEmptyCollection with succeded`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startEmptyCollection('collection');
+            logger.stopEmptyCollection(true);
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Emptying collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+            expect(stubSucceeded).to.have.been.calledOnce;
+            expect(stubFail).to.have.callCount(0);
+        });
+        it(`Should properly execute stopEmptyCollection with failed`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startEmptyCollection('collection');
+            logger.stopEmptyCollection(false);
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Emptying collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+            expect(stubSucceeded).to.have.callCount(0);
+            expect(stubFail).to.have.been.calledOnce;
+        });
+        it(`Should properly execute stopEmptyCollection with log disabled`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: false });
+            logger.startEmptyCollection('collection');
+            logger.stopEmptyCollection(true);
+
+            expect(stubOra).to.have.callCount(0);
+            expect(stubStart).to.have.callCount(0);
+            expect(stubSucceeded).to.have.callCount(0);
+            expect(stubFail).to.have.callCount(0);
         });
     });
 
