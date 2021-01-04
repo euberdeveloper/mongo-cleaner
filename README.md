@@ -2,6 +2,8 @@
 ![Test](https://github.com/euberdeveloper/mongo-cleaner/workflows/Test/badge.svg)
 ![Lint](https://github.com/euberdeveloper/mongo-cleaner/workflows/Lint/badge.svg)
 [![Build Status](https://travis-ci.org/euberdeveloper/mongo-cleaner.svg?branch=master)](https://travis-ci.org/euberdeveloper/mongo-cleaner)
+[![Coverage Status](https://coveralls.io/repos/github/euberdeveloper/mongo-cleaner/badge.svg?branch=master)](https://coveralls.io/github/euberdeveloper/mongo-cleaner?branch=master)
+[![Codecov Status](https://codecov.io/gh/euberdeveloper/mongo-cleaner/branch/master/graph/badge.svg)](https://codecov.io/gh/euberdeveloper/mongo-cleaner)
 [![Known Vulnerabilities](https://snyk.io/test/github/euberdeveloper/mongo-cleaner/badge.svg?targetFile=package.json)](https://snyk.io/test/github/euberdeveloper/mongo-cleaner?targetFile=package.json)
 [![dependencies Status](https://david-dm.org/euberdeveloper/mongo-cleaner/status.svg)](https://david-dm.org/euberdeveloper/mongo-cleaner)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
@@ -10,6 +12,7 @@
 [![License](https://img.shields.io/npm/l/mongo-cleaner.svg?color=blue)](https://github.com/euberdeveloper/mongo-cleaner/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/euberdeveloper/mongo-cleaner.svg)](https://github.com/euberdeveloper/mongo-cleaner/stargazers)
 ![npm](https://img.shields.io/npm/v/mongo-cleaner.svg)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5068a068ce9e29c3c061/test_coverage)](https://codeclimate.com/github/euberdeveloper/mongo-cleaner/test_coverage)
 
 # mongo-cleaner
 
