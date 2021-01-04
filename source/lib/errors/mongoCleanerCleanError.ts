@@ -15,8 +15,8 @@ export class MongoCleanerCleanError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, database?: string, collection?: string, triggerError?: Error) {
-        /* istanbul ignore next */
-        /* istanbul ignore next */
+        // eslint-disable-next-line prettier/prettier
+        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerCleanError';
         this.message = message || 'MongoCleaner: Error in cleaning MongoDB';
