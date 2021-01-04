@@ -341,7 +341,39 @@ module.exports = (expect, sinon) => {
             expect(stubSucceeded).to.have.callCount(0);
         });
 
-        
+        /* startEmptyCollection */
+
+        it(`Should properly execute startEmptyCollection with log enabled`, function () {
+            const stubStart = sinon.stub();
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startEmptyCollection('collection');
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Emptying collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+        });
+        it(`Should properly execute startEmptyCollection with log disabled`, function () {
+            const stubOra = sinon.stub()
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: false });
+            logger.startEmptyCollection('collection');
+
+            expect(stubOra).to.have.callCount(0);
+        });
     });
 
 };
