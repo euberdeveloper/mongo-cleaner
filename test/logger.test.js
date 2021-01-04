@@ -186,6 +186,126 @@ module.exports = (expect, sinon) => {
             expect(stubSucceeded).to.have.callCount(0);
         });
 
+        /* stopDropCollection */
+
+        it(`Should properly execute stopDropCollection with succeded`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubWarn = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                warn: stubWarn,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startDropCollection('collection');
+            logger.stopDropCollection(true, false);
+            logger.stopDropCollection(true, true);
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Dropping collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+            expect(stubSucceeded).to.have.been.calledTwice;
+            expect(stubFail).to.have.callCount(0);
+            expect(stubWarn).to.have.callCount(0);
+        });
+        it(`Should properly execute stopDropCollection with fallback`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubWarn = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                warn: stubWarn,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startDropCollection('collection');
+            logger.stopDropCollection(true, true);
+            logger.stopDropCollection(false, true);
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Dropping collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+            expect(stubSucceeded).to.have.been.calledOnce;
+            expect(stubFail).to.have.callCount(0);
+            expect(stubWarn).to.have.been.calledOnce;
+        });
+        it(`Should properly execute stopDropCollection without fallback`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubWarn = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                warn: stubWarn,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startDropCollection('collection');
+            logger.stopDropCollection(true, false);
+            logger.stopDropCollection(false, false);
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Dropping collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+            expect(stubSucceeded).to.have.been.calledOnce;
+            expect(stubWarn).to.have.callCount(0);
+            expect(stubFail).to.have.been.calledOnce;
+        });
+        it(`Should properly execute stopDropCollection with log disabled`, function () {
+            const stubSucceeded = sinon.stub();
+            const stubWarn = sinon.stub();
+            const stubFail = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                succeed: stubSucceeded,
+                warn: stubWarn,
+                fail: stubFail
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: false });
+            logger.startDropCollection('collection');
+            logger.stopDropCollection(true);
+
+            expect(stubOra).to.have.callCount(0);
+            expect(stubStart).to.have.callCount(0);
+            expect(stubSucceeded).to.have.callCount(0);
+        });
 
         
     });
