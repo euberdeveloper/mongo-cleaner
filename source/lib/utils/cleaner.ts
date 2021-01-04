@@ -61,6 +61,7 @@ export class Cleaner {
         try {
             this.connection = await MongoClient.connect(this.uri, this.connectionOptions);
         } catch (error) {
+            /* istanbul ignore next */
             throw new MongoCleanerConnectionError(null, this.uri, this.connectionOptions, error);
         }
     }
@@ -73,6 +74,7 @@ export class Cleaner {
         try {
             await this.connection.close();
         } catch (error) {
+            /* istanbul ignore next */
             throw new MongoCleanerDisconnectionError(null, this.uri, error);
         }
     }
@@ -102,6 +104,7 @@ export class Cleaner {
                 .map(database => database.name)
                 .filter((database: string) => this.filterDatabase(database));
         } catch (error) {
+            /* istanbul ignore next */
             throw new MongoCleanerListDatabasesError(null, error);
         }
     }
@@ -143,6 +146,7 @@ export class Cleaner {
                 await this.emptyCollection(database, collection, attempts - 1);
             } else {
                 this.logger.stopEmptyCollection(false);
+                /* istanbul ignore if */
                 if (this.options.throwIfNotTotal) {
                     throw new MongoCleanerCleanError(
                         'MongoCleaner: Error in emptying collection',
