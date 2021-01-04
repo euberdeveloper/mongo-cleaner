@@ -37,6 +37,23 @@ export class Logger {
     }
 
     /**
+     * Helper method for stopping the spinner.
+     * @param succeded If the outcome were positive.
+     * @param fallback If the outcome were negative, use a fallback.
+     */
+    private stopSpinner(succeded: boolean, fallback: boolean): void {
+        if (this.log) {
+            if (succeded) {
+                this.spinner.succeed();
+            } else if (fallback) {
+                this.spinner.warn();
+            } else {
+                this.spinner.fail();
+            }
+        }
+    }
+
+    /**
      * Prints a database.
      * @param database The database to print.
      */
@@ -59,15 +76,7 @@ export class Logger {
      * @param fallback If there is a fallback in case the operation did not succed.
      */
     public stopDropDatabase(succeded: boolean, fallback?: boolean): void {
-        if (this.log) {
-            if (succeded) {
-                this.spinner.succeed();
-            } else if (fallback) {
-                this.spinner.warn();
-            } else {
-                this.spinner.fail();
-            }
-        }
+        this.stopSpinner(succeded, fallback);
     }
 
     /**
@@ -83,15 +92,7 @@ export class Logger {
      * @param fallback If there is a fallback in case the operation did not succed.
      */
     public stopDropCollection(succeded: boolean, fallback?: boolean): void {
-        if (this.log) {
-            if (succeded) {
-                this.spinner.succeed();
-            } else if (fallback) {
-                this.spinner.warn();
-            } else {
-                this.spinner.fail();
-            }
-        }
+        this.stopSpinner(succeded, fallback);
     }
 
     /**
@@ -107,13 +108,7 @@ export class Logger {
      * @param fallback If there is a fallback in case the operation did not succed.
      */
     public stopEmptyCollection(succeded: boolean): void {
-        if (this.log) {
-            if (succeded) {
-                this.spinner.succeed();
-            } else {
-                this.spinner.fail();
-            }
-        }
+        this.stopSpinner(succeded, false);
     }
 
     /**
