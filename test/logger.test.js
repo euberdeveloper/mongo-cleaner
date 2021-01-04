@@ -4,6 +4,33 @@ module.exports = (expect, sinon) => {
 
     describe('Test: logger', function () {
 
+        /* printDatabase */
+
+        it(`Should properly execute printDatabase with log enabled`, function () {
+            const sandbox = sinon.createSandbox();
+            const stubConsoleLog = sandbox.stub(console, 'log');
+            const { Logger } = require('../dist/lib/utils/logger');
+
+            const logger = new Logger({ log: true });
+            logger.printDatabase('database');
+
+            sandbox.restore();
+
+            expect(stubConsoleLog).to.have.been.calledOnceWithExactly('database');
+        });
+        it(`Should properly execute printDatabase with log disabled`, function () {
+            const sandbox = sinon.createSandbox();
+            const stubConsoleLog = sandbox.stub(console, 'log');
+            const { Logger } = require('../dist/lib/utils/logger');
+
+            const logger = new Logger({ log: false });
+            logger.printDatabase('database');
+
+            sandbox.restore();
+
+            expect(stubConsoleLog).to.have.callCount(0);
+        });
+
         /* startDropDatabase */
 
         it(`Should properly execute startDropDatabase with log enabled`, function () {
@@ -159,7 +186,7 @@ module.exports = (expect, sinon) => {
             expect(stubSucceeded).to.have.callCount(0);
         });
 
-        
+
         
     });
 
