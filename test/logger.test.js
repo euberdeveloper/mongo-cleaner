@@ -459,6 +459,60 @@ module.exports = (expect, sinon) => {
             expect(stubSucceeded).to.have.callCount(0);
             expect(stubFail).to.have.callCount(0);
         });
+
+        /* stopAndClear */
+
+        it(`Should properly execute stopAndClear with logs enabled`, function () {
+            const stubStop = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                stop: stubStop
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startDropDatabase('database');
+            logger.stopAndClear();
+            logger.startDropCollection('collection');
+            logger.stopAndClear();
+            logger.startEmptyCollection('collection');
+            logger.stopAndClear();
+
+            expect(stubOra).to.have.been.calledThrice;
+            expect(stubStart).to.have.been.calledThrice;
+            expect(stubStop).to.have.been.calledThrice;
+        });
+        it(`Should properly execute stopAndClear with logs disabled`, function () {
+            const stubStop = sinon.stub();
+            const stubStart = sinon.stub().returns({
+                stop: stubStop
+            });
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: false });
+            logger.startDropDatabase('database');
+            logger.stopAndClear();
+            logger.startDropCollection('collection');
+            logger.stopAndClear();
+            logger.startEmptyCollection('collection');
+            logger.stopAndClear();
+
+            expect(stubOra).to.have.callCount(0);
+            expect(stubStart).to.have.callCount(0);
+            expect(stubStop).to.have.callCount(0);
+        });
+        
     });
 
 };
