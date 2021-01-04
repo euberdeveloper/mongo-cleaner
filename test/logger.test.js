@@ -186,6 +186,40 @@ module.exports = (expect, sinon) => {
             expect(stubSucceeded).to.have.callCount(0);
         });
 
+        /* startDropCollection */
+
+        it(`Should properly execute startDropCollection with log enabled`, function () {
+            const stubStart = sinon.stub();
+            const stubOra = sinon.stub().returns({
+                start: stubStart
+            });
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: true });
+            logger.startDropCollection('collection');
+
+            expect(stubOra).to.have.been.calledOnceWithExactly(sinon.match({
+                text: `Dropping collection`,
+                spinner: 'dots2'
+            }));
+            expect(stubStart).to.have.been.calledOnce;
+        });
+        it(`Should properly execute startDropCollection with log disabled`, function () {
+            const stubOra = sinon.stub()
+
+            const { Logger } = proxyquire('../dist/lib/utils/logger', {
+                ora: stubOra
+            });
+
+            const logger = new Logger({ log: false });
+            logger.startDropCollection('collection');
+
+            expect(stubOra).to.have.callCount(0);
+        });
+
         /* stopDropCollection */
 
         it(`Should properly execute stopDropCollection with succeded`, function () {
