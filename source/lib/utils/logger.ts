@@ -24,6 +24,19 @@ export class Logger {
     }
 
     /**
+     * Helper method for starting the spinner.
+     * @param message The message to log.
+     */
+    private startSpinner(message: string): void {
+        if (this.log) {
+            this.spinner = ora({
+                text: message,
+                spinner: 'dots2'
+            }).start();
+        }
+    }
+
+    /**
      * Prints a database.
      * @param database The database to print.
      */
@@ -38,12 +51,7 @@ export class Logger {
      * @param database The database that is going to be dropped.
      */
     public startDropDatabase(database: string): void {
-        if (this.log) {
-            this.spinner = ora({
-                text: `Dropping ${database}`,
-                spinner: 'dots2'
-            }).start();
-        }
+        this.startSpinner(`Dropping ${database}`);
     }
     /**
      * Stops the log for dropping a database, by stopping the current spinner.
@@ -67,13 +75,7 @@ export class Logger {
      * @param collection The collection that is going to be dropped.
      */
     public startDropCollection(collection: string): void {
-        if (this.log) {
-            this.spinner = ora({
-                text: `Dropping ${collection}`,
-                indent: 2,
-                spinner: 'dots2'
-            }).start();
-        }
+        this.startSpinner(`Dropping ${collection}`);
     }
     /**
      * Stops the log for dropping a collection, by stopping the current spinner.
@@ -97,13 +99,7 @@ export class Logger {
      * @param collection The collection that is going to be emptied.
      */
     public startEmptyCollection(collection: string): void {
-        if (this.log) {
-            this.spinner = ora({
-                text: `Emptying ${collection}`,
-                indent: 2,
-                spinner: 'dots2'
-            }).start();
-        }
+        this.startSpinner(`Emptying ${collection}`);
     }
     /**
      * Stops the log for emptying a collection, by stopping the current spinner.
