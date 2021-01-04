@@ -1,11 +1,40 @@
 const rewire = require('rewire');
-const { mergeOptions } = require('../dist/lib/utils/options');
+const { mergeOptions, mergeConnectionOptions } = require('../dist/lib/utils/options');
 
 const DEFAULT_OPTIONS = rewire('../dist/lib/utils/options').__get__('DEFAULT_OPTIONS');
+const DEFAULT_CONNECTION_OPTIONS = rewire('../dist/lib/utils/options').__get__('DEFAULT_CONNECTION_OPTIONS');
 
 module.exports = (expect) => {
 
     describe('Test: options', function () {
+
+        /* mergeConnectionOptions */
+
+        it(`Should merge connection options for null`, function () {
+            const options = null;
+            const result = mergeConnectionOptions(options);
+            const expected = DEFAULT_CONNECTION_OPTIONS;
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it(`Should merge connection options for {}`, function () {
+            const options = {};
+            const result = mergeConnectionOptions(options);
+            const expected = DEFAULT_CONNECTION_OPTIONS;
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it(`Should merge connection options with port set to 23023`, function () {
+            const options = { port: 23023 };
+            const result = mergeConnectionOptions(options);
+            const expected = { ...DEFAULT_CONNECTION_OPTIONS, ...options };
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        /* mergeOptions */
 
         it(`Should merge options for null`, function () {
             const options = null;
