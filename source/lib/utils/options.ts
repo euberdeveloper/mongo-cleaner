@@ -27,7 +27,7 @@ const DEFAULT_OPTIONS: MongoCleanerOptions = {
 };
 
 /**
- * Fallbakcs the given uri with the default uri.
+ * Fallbacks the given uri with the default uri.
  * @param uri The uri to fallback.
  * @returns The fallbacked uri.
  */
@@ -35,7 +35,7 @@ export function mergeUri(uri: string): string {
     return uri || DEFAULT_URI;
 }
 /**
- * Fallbakcs the given connection options with the default connection options.
+ * Fallbacks the given connection options with the default connection options.
  * @param options The connection options to fallback.
  * @returns The fallbacked connection options.
  */
@@ -43,7 +43,7 @@ export function mergeConnectionOptions(options: MongoCleanerConnectionOptions): 
     return options ? { ...DEFAULT_CONNECTION_OPTIONS, ...options } : DEFAULT_CONNECTION_OPTIONS;
 }
 /**
- * Fallbakcs the given cleaner options with the default cleaner options.
+ * Fallbacks the given cleaner options with the default cleaner options.
  * @param options The cleaner options to fallback.
  * @returns The fallbacked cleaner options.
  */
@@ -61,10 +61,10 @@ export function mergeOptions(options: MongoCleanerOptions): MongoCleanerOptions 
         merged.emptyCollections = true;
     }
     if (typeof merged.numberOfRetries !== 'number') {
-        merged.numberOfRetries = 1;
+        merged.numberOfRetries = DEFAULT_OPTIONS.numberOfRetries;
     }
     if (typeof merged.retryMilliseconds !== 'number') {
-        merged.retryMilliseconds = 5;
+        merged.retryMilliseconds = DEFAULT_OPTIONS.retryMilliseconds;
     }
 
     return merged;
