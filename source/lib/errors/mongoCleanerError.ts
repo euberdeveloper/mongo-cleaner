@@ -15,6 +15,7 @@ export class MongoCleanerError extends Error {
     constructor(message?: string, triggerError?: Error) {
         // This includes a trick in order to make the instanceof properly work
         const trueProto = new.target.prototype;
+        /* istanbul ignore next */
         super(message);
         this.__proto__ = trueProto;
 

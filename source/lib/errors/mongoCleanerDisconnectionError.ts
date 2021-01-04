@@ -12,6 +12,7 @@ export class MongoCleanerDisconnectionError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, uri?: string, triggerError?: Error) {
+        /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerDisconnectionError';
         this.message = message || 'MongoCleaner: Error in disconnecting to mongodb';
