@@ -28,7 +28,7 @@ module.exports = (expect, sinon) => {
 
             sandbox.restore();
 
-            expect(stubConsoleLog).to.have.callCount(0);
+            expect(stubConsoleLog).to.have.not.been.called;
         });
 
         /* startDropDatabase */
@@ -62,7 +62,7 @@ module.exports = (expect, sinon) => {
             const logger = new Logger({ log: false });
             logger.startDropDatabase('database');
 
-            expect(stubOra).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
         });
 
         /* stopDropDatabase */
@@ -95,8 +95,8 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledTwice;
-            expect(stubFail).to.have.callCount(0);
-            expect(stubWarn).to.have.callCount(0);
+            expect(stubFail).to.have.not.been.called;
+            expect(stubWarn).to.have.not.been.called;
         });
         it(`Should properly execute stopDropDatabase with fallback`, function () {
             const stubSucceeded = sinon.stub();
@@ -126,7 +126,7 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledOnce;
-            expect(stubFail).to.have.callCount(0);
+            expect(stubFail).to.have.not.been.called;
             expect(stubWarn).to.have.been.calledOnce;
         });
         it(`Should properly execute stopDropDatabase without fallback`, function () {
@@ -157,7 +157,7 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledOnce;
-            expect(stubWarn).to.have.callCount(0);
+            expect(stubWarn).to.have.not.been.called;
             expect(stubFail).to.have.been.calledOnce;
         });
         it(`Should properly execute stopDropDatabase with log disabled`, function () {
@@ -181,11 +181,11 @@ module.exports = (expect, sinon) => {
             logger.startDropDatabase('database');
             logger.stopDropDatabase(true);
 
-            expect(stubOra).to.have.callCount(0);
-            expect(stubStart).to.have.callCount(0);
-            expect(stubSucceeded).to.have.callCount(0);
-            expect(stubWarn).to.have.callCount(0);
-            expect(stubFail).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
+            expect(stubStart).to.have.not.been.called;
+            expect(stubSucceeded).to.have.not.been.called;
+            expect(stubWarn).to.have.not.been.called;
+            expect(stubFail).to.have.not.been.called;
         });
 
         /* startDropCollection */
@@ -219,7 +219,7 @@ module.exports = (expect, sinon) => {
             const logger = new Logger({ log: false });
             logger.startDropCollection('collection');
 
-            expect(stubOra).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
         });
 
         /* stopDropCollection */
@@ -252,8 +252,8 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledTwice;
-            expect(stubFail).to.have.callCount(0);
-            expect(stubWarn).to.have.callCount(0);
+            expect(stubFail).to.have.not.been.called;
+            expect(stubWarn).to.have.not.been.called;
         });
         it(`Should properly execute stopDropCollection with fallback`, function () {
             const stubSucceeded = sinon.stub();
@@ -283,7 +283,7 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledOnce;
-            expect(stubFail).to.have.callCount(0);
+            expect(stubFail).to.have.not.been.called;
             expect(stubWarn).to.have.been.calledOnce;
         });
         it(`Should properly execute stopDropCollection without fallback`, function () {
@@ -314,7 +314,7 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledOnce;
-            expect(stubWarn).to.have.callCount(0);
+            expect(stubWarn).to.have.not.been.called;
             expect(stubFail).to.have.been.calledOnce;
         });
         it(`Should properly execute stopDropCollection with log disabled`, function () {
@@ -338,11 +338,11 @@ module.exports = (expect, sinon) => {
             logger.startDropCollection('collection');
             logger.stopDropCollection(true);
 
-            expect(stubOra).to.have.callCount(0);
-            expect(stubStart).to.have.callCount(0);
-            expect(stubSucceeded).to.have.callCount(0);
-            expect(stubWarn).to.have.callCount(0);
-            expect(stubFail).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
+            expect(stubStart).to.have.not.been.called;
+            expect(stubSucceeded).to.have.not.been.called;
+            expect(stubWarn).to.have.not.been.called;
+            expect(stubFail).to.have.not.been.called;
         });
 
         /* startEmptyCollection */
@@ -376,7 +376,7 @@ module.exports = (expect, sinon) => {
             const logger = new Logger({ log: false });
             logger.startEmptyCollection('collection');
 
-            expect(stubOra).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
         });
 
         /* stopEmptyCollection */
@@ -406,7 +406,7 @@ module.exports = (expect, sinon) => {
             }));
             expect(stubStart).to.have.been.calledOnce;
             expect(stubSucceeded).to.have.been.calledOnce;
-            expect(stubFail).to.have.callCount(0);
+            expect(stubFail).to.have.not.been.called;
         });
         it(`Should properly execute stopEmptyCollection with failed`, function () {
             const stubSucceeded = sinon.stub();
@@ -432,7 +432,7 @@ module.exports = (expect, sinon) => {
                 spinner: 'dots2'
             }));
             expect(stubStart).to.have.been.calledOnce;
-            expect(stubSucceeded).to.have.callCount(0);
+            expect(stubSucceeded).to.have.not.been.called;
             expect(stubFail).to.have.been.calledOnce;
         });
         it(`Should properly execute stopEmptyCollection with log disabled`, function () {
@@ -454,10 +454,10 @@ module.exports = (expect, sinon) => {
             logger.startEmptyCollection('collection');
             logger.stopEmptyCollection(true);
 
-            expect(stubOra).to.have.callCount(0);
-            expect(stubStart).to.have.callCount(0);
-            expect(stubSucceeded).to.have.callCount(0);
-            expect(stubFail).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
+            expect(stubStart).to.have.not.been.called;
+            expect(stubSucceeded).to.have.not.been.called;
+            expect(stubFail).to.have.not.been.called;
         });
 
         /* stopAndClear */
@@ -508,9 +508,9 @@ module.exports = (expect, sinon) => {
             logger.startEmptyCollection('collection');
             logger.stopAndClear();
 
-            expect(stubOra).to.have.callCount(0);
-            expect(stubStart).to.have.callCount(0);
-            expect(stubStop).to.have.callCount(0);
+            expect(stubOra).to.have.not.been.called;
+            expect(stubStart).to.have.not.been.called;
+            expect(stubStop).to.have.not.been.called;
         });
         
     });

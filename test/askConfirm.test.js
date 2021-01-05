@@ -43,7 +43,7 @@ module.exports = (expect, sinon) => {
             const result = await askConfirm();
 
             expect(result).to.equal(true);
-            expect(stubInquirer).to.have.callCount(0);
+            expect(stubInquirer).to.have.not.been.called;
         });
 
     });
