@@ -247,30 +247,61 @@ mongo-cleaner
  └── tslint.json
 ```
 
-## Build
+## Development
 
-To build the module make sure you have Typescript installed or install the dev dependencies. After this, run:
+To build the module make sure you have the dev dependencies installed.
 
-```bash
-$ npm run transpile
-```
+The project is written in `Typescript`, bundled with `Webpack` and linted with `ESLint`.
 
-The `source` folder will be compiled in the `dist` folder.
+### Lint
 
-## Dev
-
-Make sure you have the dev dependencies installed.
-
-To lint the code go to the package root in your CLI and run
+In order to lint the code:
 
 ```bash
 $ npm run lint
 ```
 
-To run tests go to the package root in your CLI and run
+In order to lint and fix the code:
+
+```bash
+$ npm run lint:fix
+```
+
+There are also the `:source` and `:test` suffix after `lint` in order to lint only the source code or the test code.
+
+### Transpile
+
+To transpile the source code:
+
+```bash
+$ npm run transpile
+```
+
+The `source` folder will be transpiled in the `dist` folder. Also the `type declarations` will be generated.
+
+### Test
+
+**Note: Running tests will delete permanently your MongoDB data. Do not do it if you have important data on it.**
+
+After having transpiled the code, run:
 
 ```bash
 $ npm test
 ```
 
-**Note: Running tests will delete permanently your MongoDB data. Do not do it if you have important data on it.**
+in order to run the tests with `mocha`.
+
+If a coverage report is to be generated, run:
+
+```bash
+$ npm run nyc
+```
+
+### Bundle
+
+```bash
+$ npm run bundle
+```
+
+The `source` folder will be compiled in the `bundled` folder. It will contain the bundled `lib/index.js`, `lib/index.d.ts` and `bin/index.js` files.
+
