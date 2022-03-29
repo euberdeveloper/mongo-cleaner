@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../interfaces/index.js';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../types/index.js';
 import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError.js';
 import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError.js';
 import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors/index.js';

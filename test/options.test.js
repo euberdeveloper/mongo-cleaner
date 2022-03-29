@@ -1,8 +1,4 @@
-import rewire from 'rewire';
-import { mergeOptions, mergeConnectionOptions } from '../dist/lib/utils/options.js';
-
-const DEFAULT_OPTIONS = rewire('../dist/lib/utils/options.js').__get__('DEFAULT_OPTIONS');
-const DEFAULT_CONNECTION_OPTIONS = rewire('../dist/lib/utils/options.js').__get__('DEFAULT_CONNECTION_OPTIONS');
+import { mergeOptions, mergeConnectionOptions, DEFAULT_OPTIONS, DEFAULT_CONNECTION_OPTIONS } from '../dist/lib/utils/options.js';
 
 export default (expect) => {
 
