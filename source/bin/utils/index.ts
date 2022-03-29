@@ -43,7 +43,7 @@ export function getUri(options: UriOptions): string {
 
     if (!result) {
         const protocol = srv ? 'srv+mongodb://' : 'mongodb://';
-        const hostname = `${host}:${port}`;
+        const hostname = `${host as string}:${port as number}`;
         const access = username ? (password ? `${username}:${password}@` : `${username}@`) : '';
         const database = db ? '/db' : '';
         result = `${protocol}${access}${hostname}${database}`;

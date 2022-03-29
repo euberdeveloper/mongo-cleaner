@@ -3,7 +3,7 @@ import { MongoCleanerError } from './mongoCleanerError';
 /** The error of mongo-cleaner when listing collections */
 export class MongoCleanerListCollectionsError extends MongoCleanerError {
     /** Database whose collections failed to be listed */
-    public database: string;
+    public database: string | null;
 
     /**
      * The constructor of the MongoCleanerListCollectionsError class.
@@ -16,8 +16,8 @@ export class MongoCleanerListCollectionsError extends MongoCleanerError {
         ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerListCollectionsError';
-        this.message = message || 'MongoCleaner: Error in listing collections';
-        this.database = database || null;
-        this.triggerError = triggerError || null;
+        this.message = message ?? 'MongoCleaner: Error in listing collections';
+        this.database = database ?? null;
+        this.triggerError = triggerError ?? null;
     }
 }

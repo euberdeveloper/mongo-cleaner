@@ -5,7 +5,7 @@ export class MongoCleanerError extends Error {
     protected __proto__: Error;
 
     /** The error that happened */
-    public triggerError: Error;
+    public triggerError: Error | null;
 
     /**
      * The constructor of the MongoCleanerError class.

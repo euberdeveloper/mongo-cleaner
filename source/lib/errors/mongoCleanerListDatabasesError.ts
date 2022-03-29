@@ -12,7 +12,7 @@ export class MongoCleanerListDatabasesError extends MongoCleanerError {
         ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerListDatabasesError';
-        this.message = message || 'MongoCleaner: Error in listing databases';
-        this.triggerError = triggerError || null;
+        this.message = message ?? 'MongoCleaner: Error in listing databases';
+        this.triggerError = triggerError ?? null;
     }
 }

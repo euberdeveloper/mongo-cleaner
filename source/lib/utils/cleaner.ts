@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerOptions } from '../interfaces';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../interfaces';
 import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError';
 import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError';
 import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors';
@@ -22,7 +22,7 @@ export class Cleaner {
     /**
      * The options for the cleaner.
      */
-    private readonly options: MongoCleanerOptions;
+    private readonly options: MongoCleanerInternalOptions;
     /**
      * The MongoDB connection.
      */
@@ -38,7 +38,7 @@ export class Cleaner {
      * @param connectionOptions The connection options to the MongoDB.
      * @param options The options for the cleaner.
      */
-    constructor(uri: string, connectionOptions: MongoCleanerConnectionOptions, options: MongoCleanerOptions) {
+    constructor(uri: string, connectionOptions: MongoCleanerConnectionOptions, options: MongoCleanerInternalOptions) {
         this.uri = uri;
         this.connectionOptions = connectionOptions;
         this.options = options;
@@ -62,7 +62,7 @@ export class Cleaner {
             this.connection = await MongoClient.connect(this.uri, this.connectionOptions);
         } catch (error) {
             /* istanbul ignore next */
-            throw new MongoCleanerConnectionError(null, this.uri, this.connectionOptions, error);
+            throw new MongoCleanerConnectionError(undefined, this.uri, this.connectionOptions, error);
         }
     }
 
@@ -75,7 +75,7 @@ export class Cleaner {
             await this.connection.close();
         } catch (error) {
             /* istanbul ignore next */
-            throw new MongoCleanerDisconnectionError(null, this.uri, error);
+            throw new MongoCleanerDisconnectionError(undefined, this.uri, error);
         }
     }
 
@@ -105,7 +105,7 @@ export class Cleaner {
                 .filter((database: string) => this.filterDatabase(database));
         } catch (error) {
             /* istanbul ignore next */
-            throw new MongoCleanerListDatabasesError(null, error);
+            throw new MongoCleanerListDatabasesError(undefined, error);
         }
     }
 
@@ -122,8 +122,9 @@ export class Cleaner {
                 .filter((collection: string) => !/^system./.test(collection));
         } catch (error) {
             if (this.options.throwIfNotTotal) {
-                throw new MongoCleanerListCollectionsError(null, database, error);
+                throw new MongoCleanerListCollectionsError(undefined, database, error);
             }
+            return [];
         }
     }
 
@@ -233,7 +234,12 @@ export class Cleaner {
             } else {
                 this.logger.stopDropDatabase(false, false);
                 if (this.options.throwIfNotTotal && database !== 'admin') {
-                    throw new MongoCleanerCleanError('MongoCleaner: Error in dropping database', database, null, error);
+                    throw new MongoCleanerCleanError(
+                        'MongoCleaner: Error in dropping database',
+                        database,
+                        undefined,
+                        error
+                    );
                 }
             }
         }

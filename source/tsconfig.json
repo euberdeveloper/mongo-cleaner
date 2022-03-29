@@ -2,13 +2,14 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "commonjs",
-        "target": "es5",
+        "target": "ES5",
+        "strictNullChecks": true,
         "lib": [
-            "es2015"
+            "ES2021"
         ],
         "outDir": "../dist",
         "sourceMap": true,
-        "declaration": true
+        "declaration": true,
     },
     "include": [
         "lib",

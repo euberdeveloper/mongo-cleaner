@@ -3,7 +3,7 @@ import { MongoCleanerError } from './mongoCleanerError';
 /** The error of a problem with mongo-cleaner when connecting to MongoDB */
 export class MongoCleanerDisconnectionError extends MongoCleanerError {
     /** The uri of the failed connection */
-    public uri: string;
+    public uri: string | null;
 
     /**
      * The constructor of the MongoCleanerDisconnectionError class.
@@ -16,8 +16,8 @@ export class MongoCleanerDisconnectionError extends MongoCleanerError {
         ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerDisconnectionError';
-        this.message = message || 'MongoCleaner: Error in disconnecting to mongodb';
-        this.uri = uri || null;
-        this.triggerError = triggerError || null;
+        this.message = message ?? 'MongoCleaner: Error in disconnecting to mongodb';
+        this.uri = uri ?? null;
+        this.triggerError = triggerError ?? null;
     }
 }

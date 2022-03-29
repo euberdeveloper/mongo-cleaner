@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
 import * as mongoCleaner from '../lib/index';
-import { MongoCleanerOptions } from '../lib/index';
+import { MongoCleanerInternalOptions } from '../lib/interfaces';
 import { UriOptions, getUri, parseKeep } from './utils';
 
 yargs
@@ -23,7 +23,7 @@ yargs
                 password: args.password,
                 srv: args.srv === 'true'
             };
-            const options: MongoCleanerOptions = {
+            const options: MongoCleanerInternalOptions = {
                 noConfirm: args.noConfirm,
                 keep: args.keep,
                 log: args.log,
@@ -34,7 +34,7 @@ yargs
                 retryMilliseconds: args.retryMilliseconds,
                 throwIfNotTotal: args.throwIfNotTotal
             };
-            await mongoCleaner.clean(getUri(uriOptions), null, options);
+            await mongoCleaner.clean(getUri(uriOptions), undefined, options);
         }
     )
     .demandCommand(1, 'You must specify a command')

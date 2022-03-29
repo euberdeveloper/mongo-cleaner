@@ -1,4 +1,4 @@
-import { MongoCleanerConnectionOptions, MongoCleanerOptions } from '../interfaces';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '../interfaces';
 
 /**
  * The default mongo uri for the [[clean]] function.
@@ -7,14 +7,11 @@ const DEFAULT_URI = 'mongodb://localhost:27017';
 /**
  * The default connection options for the [[clean]] function.
  */
-const DEFAULT_CONNECTION_OPTIONS: MongoCleanerConnectionOptions = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-};
+const DEFAULT_CONNECTION_OPTIONS: MongoCleanerConnectionOptions = {};
 /**
  * The default cleaner options for the [[clean]] function
  */
-const DEFAULT_OPTIONS: MongoCleanerOptions = {
+const DEFAULT_OPTIONS: MongoCleanerInternalOptions = {
     noConfirm: true,
     keep: [],
     log: false,
@@ -31,25 +28,26 @@ const DEFAULT_OPTIONS: MongoCleanerOptions = {
  * @param uri The uri to fallback.
  * @returns The fallbacked uri.
  */
-export function mergeUri(uri: string): string {
-    return uri || DEFAULT_URI;
+export function mergeUri(uri?: string): string {
+    return uri ?? DEFAULT_URI;
 }
 /**
  * Fallbacks the given connection options with the default connection options.
  * @param options The connection options to fallback.
  * @returns The fallbacked connection options.
  */
-export function mergeConnectionOptions(options: MongoCleanerConnectionOptions): MongoCleanerConnectionOptions {
+export function mergeConnectionOptions(options?: MongoCleanerConnectionOptions): MongoCleanerConnectionOptions {
     return options ? { ...DEFAULT_CONNECTION_OPTIONS, ...options } : DEFAULT_CONNECTION_OPTIONS;
 }
+
 /**
  * Fallbacks the given cleaner options with the default cleaner options.
  * @param options The cleaner options to fallback.
  * @returns The fallbacked cleaner options.
  */
-export function mergeOptions(options: MongoCleanerOptions): MongoCleanerOptions {
-    const merged: MongoCleanerOptions = {};
-    options = options || {};
+export function mergeOptions(options?: MongoCleanerOptions): MongoCleanerInternalOptions {
+    const merged: MongoCleanerInternalOptions = {} as MongoCleanerInternalOptions;
+    options = options ?? {};
     for (const key in DEFAULT_OPTIONS) {
         merged[key] = options[key] === undefined ? DEFAULT_OPTIONS[key] : options[key];
     }

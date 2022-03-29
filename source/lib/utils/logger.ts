@@ -1,6 +1,6 @@
 import * as ora from 'ora';
 import { Ora } from 'ora';
-import { MongoCleanerOptions } from '../interfaces';
+import { MongoCleanerInternalOptions } from '../interfaces';
 
 /**
  * The logger class.
@@ -19,7 +19,7 @@ export class Logger {
      * The constructor of the logger class.
      * @param options The options of the logger.
      */
-    constructor(options: MongoCleanerOptions) {
+    constructor(options: MongoCleanerInternalOptions) {
         this.log = options.log;
     }
 
@@ -41,7 +41,7 @@ export class Logger {
      * @param succeded If the outcome were positive.
      * @param fallback If the outcome were negative, use a fallback.
      */
-    private stopSpinner(succeded: boolean, fallback: boolean): void {
+    private stopSpinner(succeded: boolean, fallback?: boolean): void {
         if (this.log) {
             if (succeded) {
                 this.spinner.succeed();
