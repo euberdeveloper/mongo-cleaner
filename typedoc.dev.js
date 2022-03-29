@@ -1,4 +1,5 @@
 module.exports = {
+    entryPointStrategy: 'expand',
     entryPoints: [
         './source'
     ],
