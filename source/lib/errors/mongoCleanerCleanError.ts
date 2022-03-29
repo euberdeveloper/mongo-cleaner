@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error thrown when the MongoDB is not totally cleaned */
 export class MongoCleanerCleanError extends MongoCleanerError {

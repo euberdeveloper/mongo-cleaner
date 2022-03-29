@@ -1,4 +1,4 @@
-module.exports = (expect, mongodb, execSync, mongoCleaner) => {
+export default (expect, mongodb, execSync, mongoCleaner) => {
 
     describe('Test: clean function', function () {
         let connection;

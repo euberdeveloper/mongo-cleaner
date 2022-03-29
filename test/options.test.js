@@ -1,10 +1,10 @@
-const rewire = require('rewire');
-const { mergeOptions, mergeConnectionOptions } = require('../dist/lib/utils/options');
+import rewire from 'rewire';
+import { mergeOptions, mergeConnectionOptions } from '../dist/lib/utils/options.js';
 
-const DEFAULT_OPTIONS = rewire('../dist/lib/utils/options').__get__('DEFAULT_OPTIONS');
-const DEFAULT_CONNECTION_OPTIONS = rewire('../dist/lib/utils/options').__get__('DEFAULT_CONNECTION_OPTIONS');
+const DEFAULT_OPTIONS = rewire('../dist/lib/utils/options.js').__get__('DEFAULT_OPTIONS');
+const DEFAULT_CONNECTION_OPTIONS = rewire('../dist/lib/utils/options.js').__get__('DEFAULT_CONNECTION_OPTIONS');
 
-module.exports = (expect) => {
+export default (expect) => {
 
     describe('Test: options', function () {
 

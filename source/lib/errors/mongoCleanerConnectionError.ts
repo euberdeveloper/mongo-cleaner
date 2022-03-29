@@ -1,5 +1,5 @@
-import { MongoCleanerConnectionOptions } from '../interfaces';
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerConnectionOptions } from '../interfaces/index.js';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of a problem with mongo-cleaner when connecting to MongoDB */
 export class MongoCleanerConnectionError extends MongoCleanerError {

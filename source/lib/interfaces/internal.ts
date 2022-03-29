@@ -1,3 +1,3 @@
-import { MongoCleanerOptions } from './exported';
+import { MongoCleanerOptions } from './exported.js';
 
 export type MongoCleanerInternalOptions = Required<MongoCleanerOptions>;

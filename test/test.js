@@ -1,10 +1,10 @@
-const mongoclean = require('../dist/lib/index');
-const mongodb = require('mongodb');
-const sinon = require('sinon');
-const execSync = require('child_process').execSync;
+import mongoclean from '../dist/lib/index.js';
+import mongodb from 'mongodb';
+import sinon from 'sinon';
+import { execSync } from 'child_process';
 
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
 
 describe('MongoBack module tests', function() {

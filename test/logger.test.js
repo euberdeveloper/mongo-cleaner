@@ -1,6 +1,6 @@
-const proxyquire = require('proxyquire');
+import proxyquire from 'proxyquire';
 
-module.exports = (expect, sinon) => {
+export default (expect, sinon) => {
 
     describe('Test: logger', function () {
 

@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "moduleResolution": "node",
-        "module": "commonjs",
-        "target": "ES5",
+        "module": "ES2020",
+        "target": "ES6",
         "strictNullChecks": true,
         "lib": [
             "ES2021"

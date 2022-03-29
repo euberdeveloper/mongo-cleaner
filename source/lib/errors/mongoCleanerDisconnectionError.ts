@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of a problem with mongo-cleaner when connecting to MongoDB */
 export class MongoCleanerDisconnectionError extends MongoCleanerError {

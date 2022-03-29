@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of mongo-cleaner when listing databases */
 export class MongoCleanerListDatabasesError extends MongoCleanerError {

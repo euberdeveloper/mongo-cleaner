@@ -1,4 +1,4 @@
-module.exports = (expect, mongoCleaner) => {
+export default (expect, mongoCleaner) => {
 
     describe('Test: errors', function () {
 

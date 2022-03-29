@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'node:path';
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const DtsBundleWebpack = require('dts-bundle-webpack');

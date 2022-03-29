@@ -1,11 +1,11 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../interfaces';
-import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError';
-import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError';
-import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors';
-import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError';
-import { Logger } from './logger';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../interfaces/index.js';
+import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError.js';
+import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError.js';
+import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors/index.js';
+import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError.js';
+import { Logger } from './logger.js';
 
 /**
  * The class that handles the cleaning code, doing the bigger part of the job.
