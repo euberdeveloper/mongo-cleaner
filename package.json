@@ -95,5 +95,8 @@
       "test",
       "source/bin"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }
