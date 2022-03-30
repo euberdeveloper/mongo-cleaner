@@ -1,6 +1,6 @@
 {
   "name": "mongo-cleaner",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
   "main": "bundled/lib/index.js",
   "types": "bundled/lib/index.d.ts",
