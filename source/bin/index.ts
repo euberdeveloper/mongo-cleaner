@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import * as yargs from 'yargs';
-import * as mongoCleaner from '../lib/index';
-import { MongoCleanerInternalOptions } from '../lib/interfaces';
-import { UriOptions, getUri, parseKeep } from './utils';
+import * as mongoCleaner from '@lib/index';
+import { MongoCleanerInternalOptions } from '@lib/interfaces';
+import { UriOptions, getUri, parseKeep } from '@bin/utils';
 
 yargs
     .scriptName('mongo-cleaner')

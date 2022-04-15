@@ -10,7 +10,28 @@
         "outDir": "../dist",
         "sourceMap": true,
         "declaration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./lib/*"
+            ],
+            "@lib/*": [
+                "./lib/*"
+            ],
+            "@bin/*": [
+                "./bin/*"
+            ]
+        }
     },
+    "plugins": [
+        {
+            "transform": "typescript-transform-paths"
+        },
+        {
+            "transform": "typescript-transform-paths",
+            "afterDeclarations": true
+        }
+    ],
     "include": [
         "lib",
         "bin"

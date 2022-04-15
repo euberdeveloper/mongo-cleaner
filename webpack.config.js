@@ -20,7 +20,10 @@ const libConfig = {
                 include: path.resolve(__dirname, 'source'),
                 use: [
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                            compiler: 'ttypescript'
+                        }
                     }
                 ]
             }
@@ -63,7 +66,10 @@ const binConfig = {
                 include: path.resolve(__dirname, 'source'),
                 use: [
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                            compiler: 'ttypescript'
+                        }
                     },
                     {
                         loader: 'shebang-loader'

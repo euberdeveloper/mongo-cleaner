@@ -1,4 +1,4 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '../interfaces';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '@/interfaces';
 
 /**
  * The default mongo uri for the [[clean]] function.

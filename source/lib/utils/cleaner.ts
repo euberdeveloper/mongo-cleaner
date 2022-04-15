@@ -1,10 +1,13 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../interfaces';
-import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError';
-import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError';
-import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors';
-import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/interfaces';
+import {
+    MongoCleanerConnectionError,
+    MongoCleanerDisconnectionError,
+    MongoCleanerListDatabasesError,
+    MongoCleanerListCollectionsError,
+    MongoCleanerCleanError
+} from '@/errors';
 import { Logger } from './logger';
 
 /**

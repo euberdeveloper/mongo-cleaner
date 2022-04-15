@@ -1,10 +1,10 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from './interfaces';
-import { Cleaner } from './utils/cleaner';
-import { askConfirm } from './utils/askConfirm';
-import { mergeUri, mergeConnectionOptions, mergeOptions } from './utils/options';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/interfaces';
+import { Cleaner } from '@/utils/cleaner';
+import { askConfirm } from '@/utils/askConfirm';
+import { mergeUri, mergeConnectionOptions, mergeOptions } from '@/utils/options';
 
-export * from './interfaces/exported';
-export * from './errors';
+export * from '@/interfaces/exported';
+export * from '@/errors';
 
 /**
  * Tries to remove all the database of MongoDB.
