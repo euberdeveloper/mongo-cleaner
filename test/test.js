@@ -1,4 +1,6 @@
-const mongoclean = require('../dist/lib/index');
+require('./utils/mongoAlias');
+const mongoclean = require('@');
+
 const mongodb = require('mongodb');
 const sinon = require('sinon');
 const execSync = require('child_process').execSync;
