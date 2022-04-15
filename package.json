@@ -1,6 +1,6 @@
 {
   "name": "mongo-cleaner",
-  "version": "3.3.6",
+  "version": "3.3.7",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
   "main": "bundled/lib/index.js",
   "types": "bundled/lib/index.d.ts",
@@ -66,9 +66,9 @@
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
+    "bundle-declarations-webpack-plugin": "^3.0.1",
     "chai": "^4.3.6",
     "dree": "^3.3.6",
-    "dts-bundle-webpack": "^1.0.2",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-codeframe": "^7.32.1",
