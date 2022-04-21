@@ -1,6 +1,6 @@
 {
   "name": "mongo-cleaner",
-  "version": "3.3.7",
+  "version": "3.3.8",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
   "main": "bundled/lib/index.js",
   "types": "bundled/lib/index.d.ts",
@@ -86,7 +86,6 @@
     "sinon-chai": "^3.7.0",
     "ts-loader": "^9.2.8",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "ttypescript": "^1.5.13",
     "typedoc": "^0.22.13",
     "typescript": "4.5",
     "webpack": "^5.70.0",
