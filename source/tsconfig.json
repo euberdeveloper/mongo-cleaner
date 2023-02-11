@@ -10,6 +10,18 @@
         "outDir": "../dist",
         "sourceMap": true,
         "declaration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./lib/*"
+            ],
+            "@lib/*": [
+                "./lib/*"
+            ],
+            "@bin/*": [
+                "./bin/*"
+            ]
+        }
     },
     "include": [
         "lib",
