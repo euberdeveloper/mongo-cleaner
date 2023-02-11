@@ -1,5 +1,4 @@
-import * as ora from 'ora';
-import { Ora } from 'ora';
+import ora, { Ora } from 'ora';
 import { MongoCleanerInternalOptions } from '@/types/index.js';
 
 /**

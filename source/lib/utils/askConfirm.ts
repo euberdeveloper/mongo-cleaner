@@ -1,4 +1,4 @@
-import * as inquirer from 'inquirer';
+import inquirer from 'inquirer';
 
 /**
  * Asks a confirmation, whether the user is sure to clean the databases or not.

@@ -17,7 +17,6 @@ export class MongoCleanerCleanError extends MongoCleanerError {
     constructor(message?: string, database?: string, collection?: string, triggerError?: Error) {
         super(message);
         this.name = 'MongoCleanerCleanError';
-        this.message = message ?? 'MongoCleaner: Error in cleaning MongoDB';
         this.database = database ?? null;
         this.collection = collection ?? null;
         this.triggerError = triggerError ?? null;

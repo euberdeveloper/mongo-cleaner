@@ -14,7 +14,6 @@ export class MongoCleanerListCollectionsError extends MongoCleanerError {
     constructor(message?: string, database?: string, triggerError?: Error) {
         super(message);
         this.name = 'MongoCleanerListCollectionsError';
-        this.message = message ?? 'MongoCleaner: Error in listing collections';
         this.database = database ?? null;
         this.triggerError = triggerError ?? null;
     }

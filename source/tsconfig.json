@@ -1,13 +1,6 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "moduleResolution": "node",
-        "module": "ES2020",
-        "target": "ES6",
-        "strictNullChecks": true,
-        "lib": [
-            "ES2021"
-        ],
-        "outDir": "../dist",
         "sourceMap": true,
         "declaration": true,
         "baseUrl": ".",
@@ -21,7 +14,8 @@
             "@bin/*": [
                 "./bin/*"
             ]
-        }
+        },
+        "outDir": "../dist"
     },
     "include": [
         "lib",

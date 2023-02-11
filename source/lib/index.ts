@@ -1,4 +1,4 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/types/index.js';
+import { MongoCleanerConnectionOptions, MongoCleanerOptions } from '@/types/index.js';
 import { Cleaner } from '@/utils/cleaner.js';
 import { askConfirm } from '@/utils/askConfirm.js';
 import { mergeUri, mergeConnectionOptions, mergeOptions } from '@/utils/options.js';
@@ -19,14 +19,14 @@ export { DEFAULT_CONNECTION_OPTIONS, DEFAULT_OPTIONS, DEFAULT_URI } from '@/util
 export async function clean(
     uri?: string,
     connectionOptions?: MongoCleanerConnectionOptions,
-    options?: MongoCleanerInternalOptions
+    options?: MongoCleanerOptions
 ): Promise<void> {
     uri = mergeUri(uri);
     connectionOptions = mergeConnectionOptions(connectionOptions);
-    options = mergeOptions(options);
+    const mergedOptions = mergeOptions(options);
 
-    if (await askConfirm(!options.noConfirm)) {
-        const cleaner = new Cleaner(uri, connectionOptions, options);
+    if (await askConfirm(!mergedOptions.noConfirm)) {
+        const cleaner = new Cleaner(uri, connectionOptions, mergedOptions);
         await cleaner.clean();
     }
 }

@@ -205,11 +205,9 @@ export class Cleaner {
         const collections = await this.getCollections(database);
 
         for (const collection of collections) {
-            if (this.options.emptyDatabases) {
-                await this.cleanCollection(database, collection, this.options.numberOfRetries);
-            } else {
-                await this.emptyCollection(database, collection, this.options.numberOfRetries);
-            }
+            await (this.options.emptyDatabases
+                ? this.cleanCollection(database, collection, this.options.numberOfRetries)
+                : this.emptyCollection(database, collection, this.options.numberOfRetries));
         }
     }
 

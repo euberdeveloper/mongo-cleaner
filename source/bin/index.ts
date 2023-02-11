@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-import * as yargs from 'yargs';
+import yargs from 'yargs';
+
 import * as mongoCleaner from '@lib/index.js';
 import { MongoCleanerInternalOptions } from '@lib/types/index.js';
 import { UriOptions, getUri, parseKeep } from '@bin/utils/index.js';
 
-yargs
+yargs()
     .scriptName('mongo-cleaner')
     .command(
         'clean',
@@ -51,7 +52,7 @@ yargs
             group: 'Connection options:'
         },
         port: {
-            default: 27017,
+            default: 27_017,
             describe: 'The port of the connection. Ignored if also uri is specified',
             type: 'number',
             group: 'Connection options:'

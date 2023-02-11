@@ -23,7 +23,6 @@ export class MongoCleanerConnectionError extends MongoCleanerError {
     ) {
         super(message);
         this.name = 'MongoCleanerConnectionError';
-        this.message = message ?? 'MongoCleaner: Error in connecting to mongodb';
         this.uri = uri ?? null;
         this.connectionOptions = connectionOptions ?? null;
         this.triggerError = triggerError ?? null;
