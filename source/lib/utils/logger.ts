@@ -1,6 +1,6 @@
 import * as ora from 'ora';
 import { Ora } from 'ora';
-import { MongoCleanerInternalOptions } from '../types/index.js';
+import { MongoCleanerInternalOptions } from '@/types/index.js';
 
 /**
  * The logger class.

@@ -1,10 +1,13 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '../types/index.js';
-import { MongoCleanerConnectionError } from '../errors/mongoCleanerConnectionError.js';
-import { MongoCleanerDisconnectionError } from '../errors/mongoCleanerDisconnectionError.js';
-import { MongoCleanerListDatabasesError, MongoCleanerListCollectionsError } from '../errors/index.js';
-import { MongoCleanerCleanError } from '../errors/mongoCleanerCleanError.js';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/types/index.js';
+import {
+    MongoCleanerConnectionError,
+    MongoCleanerDisconnectionError,
+    MongoCleanerListDatabasesError,
+    MongoCleanerCleanError,
+    MongoCleanerListCollectionsError
+} from '@/errors/index.js';
 import { Logger } from './logger.js';
 
 /**

@@ -21,8 +21,6 @@ export class MongoCleanerConnectionError extends MongoCleanerError {
         connectionOptions?: MongoCleanerConnectionOptions,
         triggerError?: Error
     ) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerConnectionError';
         this.message = message ?? 'MongoCleaner: Error in connecting to mongodb';

@@ -1,4 +1,4 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '../types/index.js';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '@/types/index.js';
 
 /**
  * The default mongo uri for the [[clean]] function.
