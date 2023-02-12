@@ -6,7 +6,7 @@ import { MongoClient } from 'mongodb';
 describe('Test: clean function', function () {
     let connection: MongoClient;
 
-    jest.setTimeout(Number.POSITIVE_INFINITY);
+    jest.setTimeout(10 * 60 * 1000);
 
     beforeEach(async () => {
         execSync('npm run db:populate -- --quiet');
