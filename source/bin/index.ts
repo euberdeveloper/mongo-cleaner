@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
 import * as mongoCleaner from '@lib/index.js';
 import { MongoCleanerInternalOptions } from '@lib/types/index.js';
 import { UriOptions, getUri, parseKeep } from '@bin/utils/index.js';
 
-yargs
-    // @ts-ignore
+yargs(hideBin(process.argv))
     .scriptName('mongo-cleaner')
     .command(
         'clean',

@@ -6,7 +6,7 @@ import packageJson from './package.json' assert { type: 'json' };
 
 importMap.load({
     imports: {
-        '@lib/index.js': '../lib/commonjs/index.js'
+        '@lib/index.js': '../lib/esm/index.esm.js'
     }
 });
 
@@ -51,18 +51,9 @@ async function buildModule() {
     await build({
         ...shared,
         entryPoints: ['source/bin/index.ts'],
-        outfile: 'bundled/bin/index.cjs',
-        format: 'cjs',
-        external: getExternalDependencies([
-            'ora',
-            'cli-cursor',
-            'restore-cursor',
-            'log-symbols',
-            'is-unicode-supported',
-            'is-interactive',
-            'inquirer',
-            'figures'
-        ]),
+        outfile: 'bundled/bin/index.js',
+        format: 'esm',
+        external: getExternalDependencies(),
         plugins: [importMap.plugin()]
     });
 }

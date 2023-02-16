@@ -11,10 +11,7 @@ describe('Test: clean function', function () {
     beforeEach(async () => {
         execSync('npm run db:populate -- --quiet');
 
-        connection = await MongoClient.connect('mongodb://localhost:27017', {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        });
+        connection = await MongoClient.connect('mongodb://localhost:27017');
     });
     afterEach(async () => {
         await connection.close();

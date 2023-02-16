@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     entryPoints: [
         './source/lib/index.ts'
     ],

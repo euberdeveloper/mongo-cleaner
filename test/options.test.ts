@@ -32,8 +32,8 @@ describe('Test: options', function () {
         expect(result).toEqual(expected);
     });
 
-    it(`Should merge connection options with port set to 23023`, function () {
-        const options = { port: 23_023 };
+    it(`Should merge connection options with a replica set`, function () {
+        const options = { replicaSet: 'replicaSet' };
         const result = mergeConnectionOptions(options);
         const expected = { ...DEFAULT_CONNECTION_OPTIONS, ...options };
 
