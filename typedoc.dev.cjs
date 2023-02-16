@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     entryPointStrategy: 'expand',
     entryPoints: [
         './source'

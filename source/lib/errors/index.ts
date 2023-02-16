@@ -1,7 +1,7 @@
-export * from './mongoCleanerError';
+export * from './mongoCleanerError.js';
 
-export * from './mongoCleanerCleanError';
-export * from './mongoCleanerConnectionError';
-export * from './mongoCleanerDisconnectionError';
-export * from './mongoCleanerListDatabasesError';
-export * from './mongoCleanerListCollectionsError';
+export * from './mongoCleanerCleanError.js';
+export * from './mongoCleanerConnectionError.js';
+export * from './mongoCleanerDisconnectionError.js';
+export * from './mongoCleanerListDatabasesError.js';
+export * from './mongoCleanerListCollectionsError.js';

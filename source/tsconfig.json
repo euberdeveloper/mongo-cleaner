@@ -1,13 +1,6 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "target": "ES5",
-        "strictNullChecks": true,
-        "lib": [
-            "ES2021"
-        ],
-        "outDir": "../dist",
         "sourceMap": true,
         "declaration": true,
         "baseUrl": ".",
@@ -22,15 +15,7 @@
                 "./bin/*"
             ]
         },
-        "plugins": [
-            {
-                "transform": "typescript-transform-paths"
-            },
-            {
-                "transform": "typescript-transform-paths",
-                "afterDeclarations": true
-            }
-        ],
+        "outDir": "../dist"
     },
     "include": [
         "lib",

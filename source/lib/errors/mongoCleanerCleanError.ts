@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error thrown when the MongoDB is not totally cleaned */
 export class MongoCleanerCleanError extends MongoCleanerError {
@@ -15,11 +15,8 @@ export class MongoCleanerCleanError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, database?: string, collection?: string, triggerError?: Error) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerCleanError';
-        this.message = message ?? 'MongoCleaner: Error in cleaning MongoDB';
         this.database = database ?? null;
         this.collection = collection ?? null;
         this.triggerError = triggerError ?? null;

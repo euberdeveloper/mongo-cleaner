@@ -1,14 +1,14 @@
 import { MongoClient } from 'mongodb';
 
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/interfaces';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/types/index.js';
 import {
     MongoCleanerConnectionError,
     MongoCleanerDisconnectionError,
     MongoCleanerListDatabasesError,
-    MongoCleanerListCollectionsError,
-    MongoCleanerCleanError
-} from '@/errors';
-import { Logger } from './logger';
+    MongoCleanerCleanError,
+    MongoCleanerListCollectionsError
+} from '@/errors/index.js';
+import { Logger } from './logger.js';
 
 /**
  * The class that handles the cleaning code, doing the bigger part of the job.
@@ -205,11 +205,9 @@ export class Cleaner {
         const collections = await this.getCollections(database);
 
         for (const collection of collections) {
-            if (this.options.emptyDatabases) {
-                await this.cleanCollection(database, collection, this.options.numberOfRetries);
-            } else {
-                await this.emptyCollection(database, collection, this.options.numberOfRetries);
-            }
+            await (this.options.emptyDatabases
+                ? this.cleanCollection(database, collection, this.options.numberOfRetries)
+                : this.emptyCollection(database, collection, this.options.numberOfRetries));
         }
     }
 

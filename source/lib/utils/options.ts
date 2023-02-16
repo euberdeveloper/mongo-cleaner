@@ -1,17 +1,17 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '@/interfaces';
+import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions, MongoCleanerOptions } from '@/types/index.js';
 
 /**
  * The default mongo uri for the [[clean]] function.
  */
-const DEFAULT_URI = 'mongodb://localhost:27017';
+export const DEFAULT_URI = 'mongodb://localhost:27017';
 /**
  * The default connection options for the [[clean]] function.
  */
-const DEFAULT_CONNECTION_OPTIONS: MongoCleanerConnectionOptions = {};
+export const DEFAULT_CONNECTION_OPTIONS: MongoCleanerConnectionOptions = {};
 /**
  * The default cleaner options for the [[clean]] function
  */
-const DEFAULT_OPTIONS: MongoCleanerInternalOptions = {
+export const DEFAULT_OPTIONS: MongoCleanerInternalOptions = {
     noConfirm: true,
     keep: [],
     log: false,

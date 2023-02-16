@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of a problem with mongo-cleaner when connecting to MongoDB */
 export class MongoCleanerDisconnectionError extends MongoCleanerError {
@@ -12,11 +12,8 @@ export class MongoCleanerDisconnectionError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, uri?: string, triggerError?: Error) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerDisconnectionError';
-        this.message = message ?? 'MongoCleaner: Error in disconnecting to mongodb';
         this.uri = uri ?? null;
         this.triggerError = triggerError ?? null;
     }

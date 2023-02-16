@@ -1,31 +1,20 @@
 {
   "name": "mongo-cleaner",
-  "version": "3.3.10",
+  "version": "3.4.1",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
-  "main": "bundled/lib/index.js",
-  "types": "bundled/lib/index.d.ts",
-  "bin": "bundled/bin/index.js",
-  "scripts": {
-    "clean": "shx rm -rf dist bundled",
-    "pretranspile": "npm run clean",
-    "transpile": "tsc -p source",
-    "prebundle": "npm run clean",
-    "bundle": "webpack",
-    "db:populate": "mongorestore test/mock",
-    "lint": "eslint source --ext ts --format codeframe",
-    "lint:fix": "eslint source --ext ts --format codeframe --fix",
-    "test": "mocha --reporter spec",
-    "nyc": "nyc --extension=ts --reporter=html --reporter=text --reporter=lcov npm run test",
-    "cover:coveralls": "nyc report --extension=ts --reporter=text-lcov | coveralls",
-    "cover:codecov": "nyc report --extension=ts --reporter=text-lcov > coverage.lcov && codecov",
-    "cover": "npm run cover:coveralls && npm run cover:codecov",
-    "docs:tree": "dree parse . --dest docs/tree --name tree --options docs/tree/dree.config.json",
-    "docs:html": "typedoc",
-    "docs:html-dev": "typedoc --options typedoc.dev.js",
-    "docs": "npm run docs:html && npm run docs:html-dev && npm run docs:tree",
-    "commit": "git-cz",
-    "commit:sign": "git-cz -S",
-    "prepublishOnly": "npm run bundle"
+  "types": "./bundled/lib/index.d.ts",
+  "main": "./bundled/lib/commonjs/index.js",
+  "module": "./bundled/lib/esm/index.esm.js",
+  "bin": "bundled/bin/index.cjs",
+  "exports": {
+    ".": {
+      "require": "./bundled/lib/commonjs/index.js",
+      "import": "./bundled/lib/esm/index.esm.js"
+    }
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=14.16"
   },
   "files": [
     "package.json",
@@ -33,6 +22,36 @@
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "clean": "shx rm -rf dist bundled",
+    "pretranspile:source": "npm run clean",
+    "transpile:source": "tsc -p source",
+    "pretranspile": "npm run clean",
+    "transpile": "npm run transpile:source",
+    "pretranspile:all": "npm run clean",
+    "transpile:all": "tsc",
+    "bundle:esm": "node build.mjs",
+    "bundle:dts": "dts-bundle-generator -o bundled/lib/index.d.ts --project source/tsconfig.json source/lib/index.ts",
+    "prebundle": "npm run clean",
+    "bundle": "npm run bundle:esm && npm run bundle:dts",
+    "lint:source": "eslint source --ext ts --format codeframe",
+    "lint:source:fix": "eslint source --ext ts --format codeframe --fix",
+    "lint:test": "eslint test --ext ts --format codeframe",
+    "lint:test:fix": "eslint test --ext ts --format codeframe --fix",
+    "lint": "npm run lint:source && npm run lint:test",
+    "lint:fix": "npm run lint:source:fix && npm run lint:test:fix",
+    "db:populate": "mongorestore test/mock",
+    "docs:tree": "dree parse . --dest docs/tree --name tree --options docs/tree/dree.config.json",
+    "docs:html": "typedoc --plugin none --options typedoc.cjs",
+    "docs:html-dev": "typedoc --options typedoc.dev.cjs",
+    "docs": "npm run docs:html && npm run docs:html-dev && npm run docs:tree",
+    "test": "jest",
+    "cover:generate": "jest --coverage",
+    "cover:coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cover:codecov": "codecov",
+    "cover": "npm run cover:generate && npm run cover:coveralls && npm run cover:codecov",
+    "prepublishOnly": "npm run bundle"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/euberdeveloper/mongo-cleaner.git"
@@ -52,53 +71,35 @@
     "url": "https://github.com/euberdeveloper/mongo-cleaner/issues"
   },
   "homepage": "https://github.com/euberdeveloper/mongo-cleaner#readme",
-  "dependencies": {
-    "inquirer": "^8.2.2",
-    "mongodb": "^4.5.0",
-    "ora": "^5.4.1",
-    "yargs": "^17.4.1"
-  },
-  "nyc": {
-    "exclude": [
-      "test",
-      "source/bin"
-    ]
-  },
-  "optionalDependencies": {
-    "fsevents": "*"
-  },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-transform-modules-commonjs": "^7.20.11",
     "@euberdeveloper/eslint-plugin": "^2.3.0",
-    "@types/inquirer": "^8.2.1",
-    "@types/module-alias": "^2.0.1",
+    "@types/inquirer": "^9.0.3",
+    "@types/jest": "^29.4.0",
     "@types/mongodb": "^4.0.7",
-    "@types/node": "^17.0.25",
-    "@types/yargs": "^17.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
-    "@typescript-eslint/parser": "^5.20.0",
-    "bundle-declarations-webpack-plugin": "^3.0.1",
-    "chai": "^4.3.6",
-    "dree": "^3.3.7",
-    "eslint": "^8.13.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-formatter-codeframe": "^7.32.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^9.2.2",
-    "module-alias": "^2.2.2",
-    "nyc": "^15.1.0",
-    "prettier": "^2.6.2",
+    "@types/node": "^18.13.0",
+    "@types/yargs": "^17.0.22",
+    "babel-jest": "^29.4.2",
+    "codecov": "^3.8.3",
+    "coveralls": "^3.1.1",
+    "dree": "^3.4.4",
+    "dts-bundle-generator": "^7.2.0",
+    "esbuild": "^0.17.7",
+    "esbuild-plugin-import-map": "^2.1.0",
+    "eslint": "^8.34.0",
+    "jest": "^29.4.2",
     "proxyquire": "^2.1.3",
-    "rewire": "^6.0.0",
-    "shebang-loader": "^0.0.1",
     "shx": "^0.3.4",
-    "sinon": "^13.0.2",
-    "sinon-chai": "^3.7.0",
-    "ts-loader": "^9.2.8",
-    "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "typedoc": "^0.22.15",
-    "typescript": "^4.6.3",
-    "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-node-externals": "^3.0.0"
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.25",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "inquirer": "^9.1.4",
+    "mongodb": "^5.0.1",
+    "ora": "^6.1.2",
+    "yargs": "^17.6.2"
   }
 }

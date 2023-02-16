@@ -1,5 +1,5 @@
-import { MongoCleanerConnectionOptions } from '../interfaces';
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerConnectionOptions } from '../types/index.js';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of a problem with mongo-cleaner when connecting to MongoDB */
 export class MongoCleanerConnectionError extends MongoCleanerError {
@@ -21,11 +21,8 @@ export class MongoCleanerConnectionError extends MongoCleanerError {
         connectionOptions?: MongoCleanerConnectionOptions,
         triggerError?: Error
     ) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerConnectionError';
-        this.message = message ?? 'MongoCleaner: Error in connecting to mongodb';
         this.uri = uri ?? null;
         this.connectionOptions = connectionOptions ?? null;
         this.triggerError = triggerError ?? null;

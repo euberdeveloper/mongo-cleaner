@@ -1,10 +1,11 @@
-import { MongoCleanerConnectionOptions, MongoCleanerInternalOptions } from '@/interfaces';
-import { Cleaner } from '@/utils/cleaner';
-import { askConfirm } from '@/utils/askConfirm';
-import { mergeUri, mergeConnectionOptions, mergeOptions } from '@/utils/options';
+import { MongoCleanerConnectionOptions, MongoCleanerOptions } from '@/types/index.js';
+import { Cleaner } from '@/utils/cleaner.js';
+import { askConfirm } from '@/utils/askConfirm.js';
+import { mergeUri, mergeConnectionOptions, mergeOptions } from '@/utils/options.js';
 
-export * from '@/interfaces/exported';
-export * from '@/errors';
+export * from '@/types/exported.js';
+export * from '@/errors/index.js';
+export { DEFAULT_CONNECTION_OPTIONS, DEFAULT_OPTIONS, DEFAULT_URI } from '@/utils/options.js';
 
 /**
  * Tries to remove all the database of MongoDB.
@@ -18,14 +19,14 @@ export * from '@/errors';
 export async function clean(
     uri?: string,
     connectionOptions?: MongoCleanerConnectionOptions,
-    options?: MongoCleanerInternalOptions
+    options?: MongoCleanerOptions
 ): Promise<void> {
     uri = mergeUri(uri);
     connectionOptions = mergeConnectionOptions(connectionOptions);
-    options = mergeOptions(options);
+    const mergedOptions = mergeOptions(options);
 
-    if (await askConfirm(!options.noConfirm)) {
-        const cleaner = new Cleaner(uri, connectionOptions, options);
+    if (await askConfirm(!mergedOptions.noConfirm)) {
+        const cleaner = new Cleaner(uri, connectionOptions, mergedOptions);
         await cleaner.clean();
     }
 }

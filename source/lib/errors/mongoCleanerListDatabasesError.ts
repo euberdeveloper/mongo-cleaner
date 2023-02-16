@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of mongo-cleaner when listing databases */
 export class MongoCleanerListDatabasesError extends MongoCleanerError {
@@ -8,11 +8,8 @@ export class MongoCleanerListDatabasesError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, triggerError?: Error) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerListDatabasesError';
-        this.message = message ?? 'MongoCleaner: Error in listing databases';
         this.triggerError = triggerError ?? null;
     }
 }

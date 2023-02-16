@@ -1,4 +1,4 @@
-import { MongoCleanerError } from './mongoCleanerError';
+import { MongoCleanerError } from './mongoCleanerError.js';
 
 /** The error of mongo-cleaner when listing collections */
 export class MongoCleanerListCollectionsError extends MongoCleanerError {
@@ -12,11 +12,8 @@ export class MongoCleanerListCollectionsError extends MongoCleanerError {
      * @param triggerError The original error that triggered this error.
      */
     constructor(message?: string, database?: string, triggerError?: Error) {
-        // eslint-disable-next-line prettier/prettier
-        ; /* istanbul ignore next */
         super(message);
         this.name = 'MongoCleanerListCollectionsError';
-        this.message = message ?? 'MongoCleaner: Error in listing collections';
         this.database = database ?? null;
         this.triggerError = triggerError ?? null;
     }

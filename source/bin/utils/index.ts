@@ -68,7 +68,7 @@ export function parseKeep(values: string[]): (string | RegExp)[] {
             const pieces = value.split('/').splice(1);
             try {
                 return pieces.length === 1 ? new RegExp(pieces[0]) : new RegExp(pieces[0], pieces[1]);
-            } catch (error) {
+            } catch {
                 return value;
             }
         } else {
