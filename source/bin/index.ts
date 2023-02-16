@@ -5,7 +5,8 @@ import * as mongoCleaner from '@lib/index.js';
 import { MongoCleanerInternalOptions } from '@lib/types/index.js';
 import { UriOptions, getUri, parseKeep } from '@bin/utils/index.js';
 
-yargs()
+yargs
+    // @ts-ignore
     .scriptName('mongo-cleaner')
     .command(
         'clean',
