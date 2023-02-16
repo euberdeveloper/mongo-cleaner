@@ -1,12 +1,17 @@
 {
     "exclude": [ 
         "node_modules",
-        ".nyc_output",
         ".git",
         "coverage",
+        "bundled\\",
+        "bundled/",
         "dist\\",
-        "docs\\html\\",
-        "docs\\markdown\\",
-        "test\\mock\\"
+        "dist/",
+        "docs\\documentation\\html\\",
+        "docs/documentation/html/",
+        "docs\\documentation\\html-dev\\",
+        "docs/documentation/html-dev/",
+        "test\\mock\\",
+        "test/mock/"
     ]
 }

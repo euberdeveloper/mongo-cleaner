@@ -205,44 +205,61 @@ Made with **[dree](https://www.npmjs.com/package/dree)**.
 
 ```
 mongo-cleaner
- ├─> dist
- ├─> source
- │   ├─> bin
- │   │   ├── index.ts
- │   │   └─> utils
- │   │       └── index.ts
- │   └─> lib
- │       ├─> errors
- │       │   ├── index.ts
- │       │   ├── mongoCleanerCleanError.ts
- │       │   ├── mongoCleanerConnectionError.ts
- │       │   ├── mongoCleanerDisconnectionError.ts
- │       │   ├── mongoCleanerError.ts
- │       │   ├── mongoCleanerListCollectionsError.ts
- │       │   └── mongoCleanerListDatabasesError.ts
- │       ├── index.ts
- │       ├─> interfaces
- │       │   └── index.ts
- │       └─> utils
- │           ├── askConfirm.ts
- │           ├── cleaner.ts
- │           ├── logger.ts
- │           └── options.ts
- ├─> test
- │   ├── clean.test.js
- │   ├─> mock
- │   └── test.js
+ ├── .eslintignore
+ ├── .eslintrc.cjs
+ ├── .prettierrc.cjs
+ ├── LICENSE
+ ├── README.md
+ ├── babel.config.cjs
+ ├── build.mjs
+ ├─> bundled
  ├─> docs
- │   ├─> html
+ │   ├─> documentation
+ │   │   ├─> html
+ │   │   └─> html-dev
  │   └─> tree
  │       ├── dree.config.json
  │       └── tree.txt
- ├── LICENSE
- ├── .npmignore
+ ├── jest.config.ts
  ├── package-lock.json
  ├── package.json
+ ├─> source
+ │   ├─> bin
+ │   │   ├── .eslintrc.cjs
+ │   │   ├── index.ts
+ │   │   └─> utils
+ │   │       └── index.ts
+ │   ├─> lib
+ │   │   ├─> errors
+ │   │   │   ├── index.ts
+ │   │   │   ├── mongoCleanerCleanError.ts
+ │   │   │   ├── mongoCleanerConnectionError.ts
+ │   │   │   ├── mongoCleanerDisconnectionError.ts
+ │   │   │   ├── mongoCleanerError.ts
+ │   │   │   ├── mongoCleanerListCollectionsError.ts
+ │   │   │   └── mongoCleanerListDatabasesError.ts
+ │   │   ├── index.ts
+ │   │   ├─> types
+ │   │   │   ├── exported.ts
+ │   │   │   ├── index.ts
+ │   │   │   └── internal.ts
+ │   │   └─> utils
+ │   │       ├── askConfirm.ts
+ │   │       ├── cleaner.ts
+ │   │       ├── logger.ts
+ │   │       └── options.ts
+ │   └── tsconfig.json
+ ├─> test
+ │   ├── .eslintrc.cjs
+ │   ├── clean.test.ts
+ │   ├── errors.test.ts
+ │   ├─> mock
+ │   ├── options.test.ts
+ │   └─> utils
+ │       └── mongoAlias.js
  ├── tsconfig.json
- └── tslint.json
+ ├── typedoc.cjs
+ └── typedoc.dev.cjs
 ```
 
 ## Development

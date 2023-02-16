@@ -1,6 +1,6 @@
 {
   "name": "mongo-cleaner",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "An npm module to quickly clean your mongodb, both from code and cli.",
   "types": "./bundled/lib/index.d.ts",
   "main": "./bundled/lib/commonjs/index.js",
@@ -41,7 +41,7 @@
     "lint": "npm run lint:source && npm run lint:test",
     "lint:fix": "npm run lint:source:fix && npm run lint:test:fix",
     "db:populate": "mongorestore test/mock",
-    "docs:tree": "dree parse . --dest docs/tree --name tree --options docs/tree/dree.config.json",
+    "docs:tree": "dree parse . --dest docs/tree/tree.txt --options docs/tree/dree.config.json",
     "docs:html": "typedoc --plugin none --options typedoc.cjs",
     "docs:html-dev": "typedoc --options typedoc.dev.cjs",
     "docs": "npm run docs:html && npm run docs:html-dev && npm run docs:tree",
