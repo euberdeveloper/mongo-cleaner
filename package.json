@@ -5,7 +5,7 @@
   "types": "./bundled/lib/index.d.ts",
   "main": "./bundled/lib/commonjs/index.js",
   "module": "./bundled/lib/esm/index.esm.js",
-  "bin": "bundled/bin/index.js",
+  "bin": "bundled/bin/index.cjs",
   "exports": {
     ".": {
       "require": "./bundled/lib/commonjs/index.js",
