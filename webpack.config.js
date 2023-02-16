@@ -1,7 +1,9 @@
 import path from 'node:path';
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const DtsBundleWebpack = require('dts-bundle-webpack');
+const BundleDeclarationsWebpackPlugin = require('bundle-declarations-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 
 const libConfig = {
     target: 'node',
@@ -11,7 +13,11 @@ const libConfig = {
         index: './source/lib/index.ts',
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        plugins: [new TsconfigPathsPlugin({
+            configFile: './source/tsconfig.json',
+            extensions: ['.ts', '.js']
+        })]
     },
     module: {
         rules: [
@@ -27,10 +33,9 @@ const libConfig = {
         ]
     },
     plugins: [
-        new DtsBundleWebpack({
-            name: 'mongo-cleaner',
-            main: 'dist/lib/index.d.ts',
-            out: '../../bundled/lib/index.d.ts'
+        new BundleDeclarationsWebpackPlugin({
+            entry: "./source/lib/index.ts",
+            outFile: "./index.d.ts"
         })
     ],
     externals: [nodeExternals()],
@@ -52,7 +57,11 @@ const binConfig = {
         index: './source/bin/index.ts',
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        plugins: [new TsconfigPathsPlugin({
+            configFile: './source/tsconfig.json',
+            extensions: ['.ts', '.js']
+        })]
     },
     plugins: [
         new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
