@@ -1,26 +1,36 @@
+import { mergeOptions } from '@lib/utils/options.js';
+import { Logger } from '@lib/utils/logger.js';
+
 describe('Test: logger', function () {
-    it.skip(`TODO: reestablish these tests`, function () {
-        console.log('skipped');
+    let spyConsoleLog: jest.SpyInstance<void, [message?: any, ...optionalParams: any[]]>;
+
+    beforeAll(function () {
+        spyConsoleLog = jest.spyOn(console, 'log').mockImplementation(() => {});
     });
+
+    beforeEach(function () {
+        spyConsoleLog.mockClear();
+    });
+
+    afterAll(function () {
+        spyConsoleLog.mockRestore();
+    });
+
     /* printDatabase */
-    // it(`Should properly execute printDatabase with log enabled`, function () {
-    //     const sandbox = sinon.createSandbox();
-    //     const stubConsoleLog = sandbox.stub(console, 'log');
-    //     const { Logger } = require('../dist/lib/utils/logger');
-    //     const logger = new Logger({ log: true });
-    //     logger.printDatabase('database');
-    //     sandbox.restore();
-    //     expect(stubConsoleLog).to.have.been.calledOnceWithExactly('database');
-    // });
-    // it(`Should properly execute printDatabase with log disabled`, function () {
-    //     const sandbox = sinon.createSandbox();
-    //     const stubConsoleLog = sandbox.stub(console, 'log');
-    //     const { Logger } = require('../dist/lib/utils/logger');
-    //     const logger = new Logger({ log: false });
-    //     logger.printDatabase('database');
-    //     sandbox.restore();
-    //     expect(stubConsoleLog).to.have.not.been.called;
-    // });
+
+    it(`Should properly execute printDatabase with log enabled`, function () {
+        const logger = new Logger(mergeOptions({ log: true }));
+        logger.printDatabase('database');
+        expect(spyConsoleLog).toHaveBeenCalledTimes(1);
+        expect(spyConsoleLog).toHaveBeenCalledWith('database');
+    });
+
+    it(`Should properly execute printDatabase with log disabled`, function () {
+        const logger = new Logger(mergeOptions({ log: false }));
+        logger.printDatabase('database');
+        expect(spyConsoleLog).not.toHaveBeenCalled();
+    });
+
     // /* startDropDatabase */
     // it(`Should properly execute startDropDatabase with log enabled`, function () {
     //     const stubStart = sinon.stub();
