@@ -1,3 +1,5 @@
+import { mockOra, mockOraStart } from '@test/utils/mockOra.js';
+
 import { mergeOptions } from '@lib/utils/options.js';
 import { Logger } from '@lib/utils/logger.js';
 
@@ -10,10 +12,14 @@ describe('Test: logger', function () {
 
     beforeEach(function () {
         spyConsoleLog.mockClear();
+        mockOra.mockClear();
+        mockOraStart.mockClear();
     });
 
     afterAll(function () {
         spyConsoleLog.mockRestore();
+        mockOraStart.mockRestore();
+        mockOra.mockRestore();
     });
 
     /* printDatabase */
@@ -31,25 +37,17 @@ describe('Test: logger', function () {
         expect(spyConsoleLog).not.toHaveBeenCalled();
     });
 
-    // /* startDropDatabase */
-    // it(`Should properly execute startDropDatabase with log enabled`, function () {
-    //     const stubStart = sinon.stub();
-    //     const stubOra = sinon.stub().returns({
-    //         start: stubStart
-    //     });
-    //     const { Logger } = proxyquire('../dist/lib/utils/logger', {
-    //         ora: stubOra
-    //     });
-    //     const logger = new Logger({ log: true });
-    //     logger.startDropDatabase('database');
-    //     expect(stubOra).to.have.been.calledOnceWithExactly(
-    //         sinon.match({
-    //             text: `Dropping database`,
-    //             spinner: 'dots2'
-    //         })
-    //     );
-    //     expect(stubStart).to.have.been.calledOnce;
-    // });
+    /* startDropDatabase */
+
+    it(`Should properly execute startDropDatabase with log enabled`, function () {
+        const logger = new Logger(mergeOptions({ log: true }));
+        logger.startDropDatabase('database');
+        expect(mockOra).toHaveBeenCalledWith({
+            text: `Dropping database`,
+            spinner: 'dots2'
+        });
+        expect(mockOraStart).toHaveBeenCalledTimes(1);
+    });
     // it(`Should properly execute startDropDatabase with log disabled`, function () {
     //     const stubOra = sinon.stub();
     //     const { Logger } = proxyquire('../dist/lib/utils/logger', {
