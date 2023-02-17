@@ -48,15 +48,12 @@ describe('Test: logger', function () {
         });
         expect(mockOraStart).toHaveBeenCalledTimes(1);
     });
-    // it(`Should properly execute startDropDatabase with log disabled`, function () {
-    //     const stubOra = sinon.stub();
-    //     const { Logger } = proxyquire('../dist/lib/utils/logger', {
-    //         ora: stubOra
-    //     });
-    //     const logger = new Logger({ log: false });
-    //     logger.startDropDatabase('database');
-    //     expect(stubOra).to.have.not.been.called;
-    // });
+
+    it(`Should properly execute startDropDatabase with log disabled`, function () {
+        const logger = new Logger(mergeOptions({ log: false }));
+        logger.startDropDatabase('database');
+        expect(mockOraStart).not.toHaveBeenCalled();
+    });
     // /* stopDropDatabase */
     // it(`Should properly execute stopDropDatabase with succeded`, function () {
     //     const stubSucceeded = sinon.stub();
