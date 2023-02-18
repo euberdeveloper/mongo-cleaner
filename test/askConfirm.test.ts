@@ -1,38 +1,34 @@
+import { mockInquirerPrompt } from '@test/utils/mockAskConfirm.js';
+
+import { askConfirm } from '@lib/utils/askConfirm.js';
+
 describe('Test: askConfirm', function () {
-    it.skip(`TODO: reestablish these tests`, function () {
-        console.log('skipped');
+    beforeEach(function () {
+        mockInquirerPrompt.mockClear();
     });
-    // it(`Should ask confirm and return true`, async function () {
-    //     const stubInquirer = sinon.stub().resolves({ clean: true });
-    //     const { askConfirm } = proxyquire('../dist/lib/utils/askConfirm', {
-    //         inquirer: {
-    //             prompt: stubInquirer
-    //         }
-    //     });
-    //     const result = await askConfirm(true);
-    //     expect(result).to.equal(true);
-    //     expect(stubInquirer).to.have.been.calledOnce;
-    // });
-    // it(`Should ask confirm and return false`, async function () {
-    //     const stubInquirer = sinon.stub().resolves({ clean: false });
-    //     const { askConfirm } = proxyquire('../dist/lib/utils/askConfirm', {
-    //         inquirer: {
-    //             prompt: stubInquirer
-    //         }
-    //     });
-    //     const result = await askConfirm(true);
-    //     expect(result).to.equal(false);
-    //     expect(stubInquirer).to.have.been.calledOnce;
-    // });
-    // it(`Should not ask confirm and return true`, async function () {
-    //     const stubInquirer = sinon.stub().resolves({ clean: true });
-    //     const { askConfirm } = proxyquire('../dist/lib/utils/askConfirm', {
-    //         inquirer: {
-    //             prompt: stubInquirer
-    //         }
-    //     });
-    //     const result = await askConfirm();
-    //     expect(result).to.equal(true);
-    //     expect(stubInquirer).to.have.not.been.called;
-    // });
+
+    afterAll(function () {
+        mockInquirerPrompt.mockRestore();
+    });
+
+    it(`Should ask confirm and return true`, async function () {
+        mockInquirerPrompt.mockResolvedValueOnce({ clean: true });
+        const result = await askConfirm(true);
+        expect(result).toEqual(true);
+        expect(mockInquirerPrompt).toHaveBeenCalled();
+    });
+
+    it(`Should ask confirm and return false`, async function () {
+        mockInquirerPrompt.mockResolvedValueOnce({ clean: false });
+        const result = await askConfirm(true);
+        expect(result).toEqual(false);
+        expect(mockInquirerPrompt).toHaveBeenCalled();
+    });
+
+    it(`Should not ask confirm and return true`, async function () {
+        mockInquirerPrompt.mockResolvedValueOnce({ clean: false });
+        const result = await askConfirm();
+        expect(result).toEqual(true);
+        expect(mockInquirerPrompt).not.toHaveBeenCalled();
+    });
 });
