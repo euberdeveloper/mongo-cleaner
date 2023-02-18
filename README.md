@@ -10,8 +10,6 @@
 [![License](https://img.shields.io/npm/l/mongo-cleaner.svg?color=blue)](https://github.com/euberdeveloper/mongo-cleaner/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/euberdeveloper/mongo-cleaner.svg)](https://github.com/euberdeveloper/mongo-cleaner/stargazers)
 ![npm](https://img.shields.io/npm/v/mongo-cleaner.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5068a068ce9e29c3c061/maintainability)](https://codeclimate.com/github/euberdeveloper/mongo-cleaner/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5068a068ce9e29c3c061/test_coverage)](https://codeclimate.com/github/euberdeveloper/mongo-cleaner/test_coverage)
 
 # mongo-cleaner
 
