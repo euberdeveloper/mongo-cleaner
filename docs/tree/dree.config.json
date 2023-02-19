@@ -3,15 +3,10 @@
         "node_modules",
         ".git",
         "coverage",
-        "bundled\\",
         "bundled/",
-        "dist\\",
         "dist/",
-        "docs\\documentation\\html\\",
         "docs/documentation/html/",
-        "docs\\documentation\\html-dev\\",
         "docs/documentation/html-dev/",
-        "test\\mock\\",
         "test/mock/"
     ]
 }
