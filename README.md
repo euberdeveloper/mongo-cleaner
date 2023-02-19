@@ -200,7 +200,8 @@ See __Usage__ to have an example.
 ## Project structure
 
 [//]: # (dree - BEGIN)
-Made with **[dree](https://www.npmjs.com/package/dree)**.
+Made with [dree](https://github.com/marketplace/actions/ga-dree)
+
 
 ```
 mongo-cleaner
@@ -211,14 +212,9 @@ mongo-cleaner
  ├── README.md
  ├── babel.config.cjs
  ├── build.mjs
- ├─> bundled
  ├─> docs
- │   ├─> documentation
- │   │   ├─> html
- │   │   └─> html-dev
  │   └─> tree
- │       ├── dree.config.json
- │       └── tree.txt
+ │       └── dree.config.json
  ├── jest.config.ts
  ├── package-lock.json
  ├── package.json
@@ -250,17 +246,21 @@ mongo-cleaner
  │   └── tsconfig.json
  ├─> test
  │   ├── .eslintrc.cjs
+ │   ├── askConfirm.test.ts
  │   ├── clean.test.ts
  │   ├── errors.test.ts
+ │   ├── logger.test.ts
  │   ├─> mock
  │   ├── options.test.ts
  │   └─> utils
- │       └── mongoAlias.js
+ │       ├── mockAskConfirm.ts
+ │       └── mockOra.ts
  ├── tsconfig.json
  ├── typedoc.cjs
  └── typedoc.dev.cjs
 ```
 [//]: # (dree - END)
+
 
 ## Development
 
