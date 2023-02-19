@@ -17,7 +17,7 @@ jobs:
       - name: Inject dree
         uses: 'euberdeveloper/ga-dree@main'
         with:
-          config: './docs/dree.config.json'
+          config: './docs/tree/dree.config.json'
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
