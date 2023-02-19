@@ -199,6 +199,7 @@ See __Usage__ to have an example.
 
 ## Project structure
 
+[//]: # (dree - BEGIN)
 Made with **[dree](https://www.npmjs.com/package/dree)**.
 
 ```
@@ -259,6 +260,7 @@ mongo-cleaner
  ├── typedoc.cjs
  └── typedoc.dev.cjs
 ```
+[//]: # (dree - END)
 
 ## Development
 
